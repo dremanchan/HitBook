@@ -1,0 +1,22 @@
+.page-title {
+    text-align: center;
+}
+
+.instructions {
+    display: table;
+    font-size: larger;
+    line-height: 65px;
+    margin-left: 20;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.buttonDiv {
+    justify-content: center;
+    display: flex;
+}
