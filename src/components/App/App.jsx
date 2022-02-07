@@ -20,6 +20,7 @@ import LandingPage from '../LandingPage/LandingPage';
 import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
 import ButtonCheck from '../ButtonCheck/ButtonCheck';
+import GameSelect from '../GameSelect/GameSelect';
 
 import './App.css';
 
@@ -80,6 +81,14 @@ function App() {
             <ButtonCheck />
           
           </ProtectedRoute>
+
+          <ProtectedRoute 
+            
+            exact
+            path="/gameselect">
+              <GameSelect />
+          </ProtectedRoute>
+
 
           <Route
             exact

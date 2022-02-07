@@ -9,7 +9,8 @@
     margin-left: 20;
 }
 
-.container {
+
+.info-container {
     display: flex;
     justify-content: center;
     align-items: center;

@@ -10,7 +10,7 @@ import { Link, } from 'react-router-dom';
 function InfoPage() {
   return ( <>
     <h1 className="page-title">How to use this app:</h1>
-    <div className="container">
+    <div className="info-container">
       
 
       <ol className="instructions">
@@ -24,7 +24,7 @@ function InfoPage() {
       
     </div>
     <div className="buttonDiv">
-    <Link to="game-select">
+    <Link to="gameselect">
         <button className="gameBtn"> Game Select</button>
       </Link>
       </div>
