@@ -19,8 +19,11 @@ import InfoPage from '../InfoPage/InfoPage';
 import LandingPage from '../LandingPage/LandingPage';
 import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
+import ButtonCheck from '../ButtonCheck/ButtonCheck';
 
 import './App.css';
+
+import { GamepadsProvider } from 'react-gamepads';
 
 function App() {
   const dispatch = useDispatch();
@@ -32,6 +35,7 @@ function App() {
   }, [dispatch]);
 
   return (
+    < GamepadsProvider>
     <Router>
       <div>
         <Nav />
@@ -66,6 +70,15 @@ function App() {
             path="/info"
           >
             <InfoPage />
+          </ProtectedRoute>
+
+          <ProtectedRoute
+
+            exact
+            path="/buttoncheck"
+          >
+            <ButtonCheck />
+          
           </ProtectedRoute>
 
           <Route
@@ -118,6 +131,7 @@ function App() {
         <Footer />
       </div>
     </Router>
+    </GamepadsProvider>
   );
 }
 
