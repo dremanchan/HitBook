@@ -31,7 +31,15 @@ CREATE TABLE "game" (
     "name" VARCHAR (80),
 );
 
+-- Starter Game Input
 INSERT INTO "game" ("name")
 VALUES ('Smash Ultimate');
+
+-- Character move table
+CREATE TABLE "movelist" (
+    "id" SERIAL PRIMARY KEY,
+    "input" VARCHAR (80),
+    "startupFrames" VARCHAR 80,
+);
 
 
