@@ -22,6 +22,7 @@ import RegisterPage from '../RegisterPage/RegisterPage';
 import ButtonCheck from '../ButtonCheck/ButtonCheck';
 import GameSelect from '../GameSelect/GameSelect';
 import SmashSelect from '../SmashSelect/SmashSelect';
+import AdminPage from '../AdminPage/AdminPage';
 
 import './App.css';
 
@@ -95,6 +96,14 @@ function App() {
             exact
             path="/smashselect">
             <SmashSelect />
+          </ProtectedRoute>
+
+        {/* Route to admin page */}
+          <ProtectedRoute
+
+            exact
+            path="/admin">
+            <AdminPage />
           </ProtectedRoute>
 
 
