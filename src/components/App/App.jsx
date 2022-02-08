@@ -15,11 +15,14 @@ import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 
 import AboutPage from '../AboutPage/AboutPage';
 import UserPage from '../UserPage/UserPage';
-import InfoPage from '../InfoPage/InfoPage';
+import InstructionsPage from '../InstructionsPage/InstructionsPage';
 import LandingPage from '../LandingPage/LandingPage';
 import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
 import ButtonCheck from '../ButtonCheck/ButtonCheck';
+import GameSelect from '../GameSelect/GameSelect';
+import SmashSelect from '../SmashSelect/SmashSelect';
+import AdminPage from '../AdminPage/AdminPage';
 
 import './App.css';
 
@@ -67,9 +70,9 @@ function App() {
           <ProtectedRoute
             // logged in shows InfoPage else shows LoginPage
             exact
-            path="/info"
+            path="/instructions"
           >
-            <InfoPage />
+            <InstructionsPage />
           </ProtectedRoute>
 
           <ProtectedRoute
@@ -80,6 +83,29 @@ function App() {
             <ButtonCheck />
           
           </ProtectedRoute>
+
+          <ProtectedRoute 
+            
+            exact
+            path="/gameselect">
+              <GameSelect />
+          </ProtectedRoute>
+
+          <ProtectedRoute
+
+            exact
+            path="/smashselect">
+            <SmashSelect />
+          </ProtectedRoute>
+
+        {/* Route to admin page */}
+          <ProtectedRoute
+
+            exact
+            path="/admin">
+            <AdminPage />
+          </ProtectedRoute>
+
 
           <Route
             exact

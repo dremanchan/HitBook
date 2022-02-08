@@ -28,12 +28,24 @@ function Nav() {
               Home
             </Link>
 
-            <Link className="navLink" to="/info">
-              Info Page
+            <Link className="navLink" to="/instructions">
+              Instructions
             </Link>
 
             <Link className="navLink" to="/buttoncheck">
               ButtonCheck
+            </Link>
+
+            <Link className="navLink" to="/gameselect">
+              Game Select
+            </Link>
+
+            <Link className="navLink" to="/smashselect">
+              Smash Ultimate
+            </Link>
+
+            <Link className="navLink" to="/admin">
+              Admin
             </Link>
 
             <LogOutButton className="navLink" />
