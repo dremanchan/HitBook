@@ -15,15 +15,14 @@ CREATE TABLE "character" (
     "id" SERIAL PRIMARY KEY,
     "name" VARCHAR (100),
     "gameId" INTEGER,
-    "moveList" VARCHAR (4096),
     "strategy" VARCHAR (4096),
     "combos" VARCHAR (2048),
     "image" VARCHAR (2048)
 );
 
 -- Character input to character table
-INSERT INTO "character" ("gameId", "name", "moveList", "strategy", "combos", "image")
-VALUES  (3, 'Captain Falcon', 'Falcon Punch', 'Hit and Run', 'Downthrow -> Knee', 'public/images/cfalcon.jpeg');
+INSERT INTO "character" ("gameId", "name", "strategy", "combos", "image")
+VALUES  (3, 'Captain Falcon', 'Hit and Run', 'Downthrow -> Knee', 'public/images/cfalcon.jpeg');
 
 -- This table is for games
 CREATE TABLE "game" (
@@ -36,10 +35,20 @@ INSERT INTO "game" ("name")
 VALUES ('Smash Ultimate');
 
 -- Character move table
-CREATE TABLE "movelist" (
+CREATE TABLE "moves" (
     "id" SERIAL PRIMARY KEY,
     "input" VARCHAR (80),
-    "startupFrames" VARCHAR 80,
+    "frames" VARCHAR (80),
+    "characterId" INTEGER
 );
+
+-- Starter moves
+
+INSERT INTO "moves" ("input", "frames", "characterId")
+VALUES 
+('Neutral B grounded', '53-62', 1),
+('Jab 1 (A)', '3', 1),
+('Jab 2 (A, A)', '5', 1),
+('Jab 3 (A, A, A)', '6', 1);
 
 
