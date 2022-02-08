@@ -40,6 +40,10 @@ function Nav() {
               Game Select
             </Link>
 
+            <Link className="navLink" to ="/smashselect">
+              Smash Ultimate
+            </Link>
+
             <LogOutButton className="navLink" />
           </>
         )}

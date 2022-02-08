@@ -21,6 +21,7 @@ import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
 import ButtonCheck from '../ButtonCheck/ButtonCheck';
 import GameSelect from '../GameSelect/GameSelect';
+import SmashSelect from '../SmashSelect/SmashSelect';
 
 import './App.css';
 
@@ -87,6 +88,13 @@ function App() {
             exact
             path="/gameselect">
               <GameSelect />
+          </ProtectedRoute>
+
+          <ProtectedRoute
+
+            exact
+            path="/smashselect">
+            <SmashSelect />
           </ProtectedRoute>
 
 
