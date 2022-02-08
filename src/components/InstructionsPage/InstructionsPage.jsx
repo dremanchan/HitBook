@@ -1,5 +1,5 @@
 import React from 'react';
-import './InfoPage.css'
+import './InstructionsPage.css'
 import { Link, } from 'react-router-dom';
 
 // This is one of our simplest components
@@ -7,7 +7,7 @@ import { Link, } from 'react-router-dom';
 // It doesn't dispatch any redux actions or display any part of redux state
 // or even care what the redux state is
 
-function InfoPage() {
+function InstructionsPage() {
   return ( <>
     <h1 className="page-title">How to use this app:</h1>
     <div className="info-container">
@@ -32,4 +32,4 @@ function InfoPage() {
   );
 }
 
-export default InfoPage;
+export default InstructionsPage;
