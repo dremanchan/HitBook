@@ -21,7 +21,9 @@ function SmashSelect() {
           return (
             <div key={character.id}>
               <h3>{character.name}</h3>
-              <img id={character.id} src={character.thumbnail} />
+              <Link to={`/smashcharacter/${character.id}`}>
+                <img className="selectImg" id={character.id} src={character.thumbnail} />
+              </Link>
             </div>
           );
         })}
