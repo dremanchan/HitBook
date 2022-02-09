@@ -1,7 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 require('dotenv').config();
-const characterRouter = require('./routes/character.router';)
+const characterRouter = require('./routes/character.router');
 
 const app = express();
 

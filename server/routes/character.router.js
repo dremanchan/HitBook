@@ -13,6 +13,7 @@ router.get('/', (req, res) => {
       "character"."strategy" AS "characterStrategy",
       "character"."combos" AS "characterCombos",
       "character"."image" AS "characterImg",
+      "character"."thumbnail" AS "characterThumb"
     FROM "character"
     JOIN "moves"
       ON "moves"."characterId" = "character"."id"

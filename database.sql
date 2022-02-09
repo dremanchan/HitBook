@@ -21,8 +21,8 @@ CREATE TABLE "character" (
 );
 
 -- Character input to character table
-INSERT INTO "character" ("gameId", "name", "strategy", "combos", "image")
-VALUES  (3, 'Captain Falcon', 'Hit and Run', 'Downthrow -> Knee', 'public/images/cfalcon.jpeg');
+INSERT INTO "character" ("gameId", "name", "strategy", "combos", "image", "thumbnail")
+VALUES  (3, 'Captain Falcon', 'Hit and Run', 'Downthrow -> Knee', 'public/images/cfalcon.jpeg', 'public/images/captain-falcon-ramen.gif');
 
 -- This table is for games
 CREATE TABLE "game" (
