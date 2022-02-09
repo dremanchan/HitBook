@@ -8,19 +8,9 @@ const router = express.Router();
 router.get('/', (req, res) => {
   const characterId = req.query.id;
   const sqlQuery = `
-    SELECT
-      "character"."name" AS "characterName",
-      "character"."strategy" AS "characterStrategy",
-      "character"."combos" AS "characterCombos",
-      "character"."image" AS "characterImg",
-      "character"."thumbnail" AS "characterThumb"
-    FROM "character"
-    JOIN "moves"
-      ON "moves"."characterId" = "character"."id"
-    WHERE "character"."id"=$1
-    GROUP BY "characterName", "characterStrategy", "characterCombos","characterImg";
+    SELECT * from "character" ORDER BY "name" DESC;
     `;
-    pool.query(sqlQuery, [characterId])
+    pool.query(sqlQuery)
       .then(dbRes => {
         console.log(dbRes.rows);
         res.send(dbRes.rows);
