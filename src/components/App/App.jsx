@@ -23,6 +23,7 @@ import ButtonCheck from '../ButtonCheck/ButtonCheck';
 import GameSelect from '../GameSelect/GameSelect';
 import SmashSelect from '../SmashSelect/SmashSelect';
 import AdminPage from '../AdminPage/AdminPage';
+import SmashCharacter from '../SmashCharacter/SmashCharacter';
 
 import './App.css';
 
@@ -104,6 +105,13 @@ function App() {
             exact
             path="/admin">
             <AdminPage />
+          </ProtectedRoute>
+
+          <ProtectedRoute
+
+            exact
+            path="/smashcharacter/:id">
+              <SmashCharacter />
           </ProtectedRoute>
 
 
