@@ -6,10 +6,16 @@ const router = express.Router();
  * GET route template
  */
 router.get('/', (req, res) => {
+  const characterId = req.query.id
   const sqlQuery = `
-    SELECT * from "character" ORDER BY "name" DESC;
+    SELECT 
+        "move"."input" AS "moveInput",
+        "move"."frames" AS "moveFrames",
+    FROM "move"
+    JOIN "character" on "move"."characterId"="character"."id"
+    WHERE "characterId" = $1;
     `;
-    pool.query(sqlQuery)
+    pool.query(sqlQuery, [characterId])
       .then(dbRes => {
         console.log(dbRes.rows);
         res.send(dbRes.rows);

@@ -6,7 +6,6 @@ import './SmashCharacter.css';
 function SmashCharacter() {
     const dispatch = useDispatch();
     const details = useSelector(store => store.details);
-    console.log('details are', details);
     const params = useParams();
     const characterId = params.id;
 

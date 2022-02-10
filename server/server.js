@@ -3,6 +3,7 @@ const bodyParser = require('body-parser');
 require('dotenv').config();
 const characterRouter = require('./routes/character.router');
 const detailsRouter = require('./routes/details.router');
+const moveRouter = require('./routes/move.router');
 
 const app = express();
 
@@ -27,6 +28,7 @@ app.use(passport.session());
 app.use('/api/user', userRouter);
 app.use('/api/character', characterRouter);
 app.use('/api/details', detailsRouter)
+app.use('/api/move/', moveRouter)
 
 // Serve static files
 app.use(express.static('build'));
