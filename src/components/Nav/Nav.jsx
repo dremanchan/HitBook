@@ -49,7 +49,8 @@ function Nav() {
             <LogOutButton className="navLink" />
           </>
         )}
-
+        
+        {/* Hides admin page from non admin */}
         {user.admin === true && (
           <>
             <Link className="navLink" to="/admin">
