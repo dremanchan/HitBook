@@ -1,4 +1,4 @@
-const moveReducer = (state = {}, action) => {
+const moveReducer = (state = [], action) => {
     switch (action.type) {
         case 'SET_MOVES':
             return action.payload;
