@@ -29,6 +29,9 @@ function SmashCharacter() {
                 <h5>{details.characterStrategy}</h5>
                 <h4>Combos:</h4>
                 <h5>{details.characterCombos}</h5>
+                <Link to="/smashSelect">
+                    <button>Character Select</button>
+                </Link>
 
             </div>
             
