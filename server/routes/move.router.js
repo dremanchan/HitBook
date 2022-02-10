@@ -10,7 +10,7 @@ router.get('/', (req, res) => {
   const sqlQuery = `
     SELECT 
         "move"."input" AS "moveInput",
-        "move"."frames" AS "moveFrames",
+        "move"."frames" AS "moveFrames"
     FROM "move"
     JOIN "character" on "move"."characterId"="character"."id"
     WHERE "characterId" = $1;

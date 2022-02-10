@@ -6,6 +6,8 @@ import './SmashCharacter.css';
 function SmashCharacter() {
     const dispatch = useDispatch();
     const details = useSelector(store => store.details);
+    const moves = useSelector(store => store.move);
+    console.log('moves are', moves);
     const params = useParams();
     const characterId = params.id;
 
@@ -14,7 +16,16 @@ function SmashCharacter() {
             type: "FETCH_DETAILS",
             payload: characterId
         });
+
+        dispatch({
+            type: "FETCH_MOVES",
+            payload: characterId
+        })
     }, [characterId]);
+
+     
+
+      
 
 
 
