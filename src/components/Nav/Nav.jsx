@@ -44,12 +44,20 @@ function Nav() {
               Smash Ultimate
             </Link>
 
-            <Link className="navLink" to="/admin">
-              Admin
-            </Link>
+            
 
             <LogOutButton className="navLink" />
           </>
+        )}
+        
+        {/* Hides admin page from non admin */}
+        {user.admin === true && (
+          <>
+            <Link className="navLink" to="/admin">
+              Admin
+            </Link>
+          </>
+
         )}
 
         <Link className="navLink" to="/about">
