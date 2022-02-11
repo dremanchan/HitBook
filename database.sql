@@ -51,4 +51,13 @@ VALUES
 ('Jab 2 (A, A)', '5', 1),
 ('Jab 3 (A, A, A)', '6', 1);
 
+-- Favorite Table
+
+CREATE TABLE "favorite" (
+    "user_id" SERIAL PRIMARY KEY,
+    "characterId" INTEGER
+);
+
+
+
 
