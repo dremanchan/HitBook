@@ -12,6 +12,11 @@ import Paper from "@mui/material/Paper";
 import Container from "@mui/material/Container";
 import Button from "@mui/material/Button";
 
+// Icons from mui
+import StarIcon from '@mui/icons-material/Star';
+import StarBorderIcon from '@mui/icons-material/StarBorder';
+
+
 function SmashCharacter() {
   const dispatch = useDispatch();
   // Access the details reducer
@@ -38,6 +43,11 @@ function SmashCharacter() {
     });
   }, [characterId]);
 
+  // favorites function
+  function toggleFavorites() {
+      
+  }
+
   // placeholder for edit button
   function editMove() {
     console.log("editMove here");
@@ -48,12 +58,17 @@ function SmashCharacter() {
     console.log("move deleted");
   }
 
+
+
   return (
     <>
+    
       <h1 className="detailHeader">Character Info</h1>
       <h2>
-        {details.characterName}
-        <Button>Edit</Button>
+        {details.characterName} 
+        <Button onClick={toggleFavorites}>
+            <StarBorderIcon />
+        </Button>
       </h2>
       <Link to="/smashSelect">
         <img src={details.characterImg} />
