@@ -5,6 +5,9 @@ function AdminPage() {
     return (
         <>
             <h1 className="adminTitle">Admin</h1>
+            
+
+
 
         </>
     )

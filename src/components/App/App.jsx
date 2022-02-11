@@ -24,6 +24,7 @@ import GameSelect from '../GameSelect/GameSelect';
 import SmashSelect from '../SmashSelect/SmashSelect';
 import AdminPage from '../AdminPage/AdminPage';
 import SmashCharacter from '../SmashCharacter/SmashCharacter';
+import Container from '@mui/material/Container'
 
 import './App.css';
 
@@ -39,6 +40,7 @@ function App() {
   }, [dispatch]);
 
   return (
+    <Container maxWidth="m">
     < GamepadsProvider>
     <Router>
       <div>
@@ -166,6 +168,7 @@ function App() {
       </div>
     </Router>
     </GamepadsProvider>
+    </Container>
   );
 }
 
