@@ -1,9 +1,9 @@
 const express = require('express');
 const pool = require('../modules/pool');
 const router = express.Router();
+const { rejectUnauthenticated } = require('../modules/authentication-middleware');
 
-
-router.get('/', (req, res) => {
+router.get('/', rejectUnauthenticated, (req, res) => {
   const user = req.user;
   const sqlQuery = `
   SELECT * FROM "favorite"
@@ -24,13 +24,13 @@ router.get('/', (req, res) => {
 });
 
 // Post Favorites Route
-router.post('/', (req, res) => {
+router.post('/', rejectUnauthenticated, (req, res) => {
   const sqlQuery = `
   INSERT INTO "favorite" ( "userId", "characterId" )
   VALUES ( $1, $2 );`;
   const queryParams = [
-    req.user.id,
-    req.character.id
+    req.user,
+    req.characterId
   ]
   pool.query(sqlQuery, queryParams)
   .then( result => {
