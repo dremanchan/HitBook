@@ -4,6 +4,7 @@ require('dotenv').config();
 const characterRouter = require('./routes/character.router');
 const detailsRouter = require('./routes/details.router');
 const moveRouter = require('./routes/move.router');
+const favoriteRouter = require('./routes/favorite.router');
 
 const app = express();
 
@@ -29,6 +30,7 @@ app.use('/api/user', userRouter);
 app.use('/api/character', characterRouter);
 app.use('/api/details', detailsRouter)
 app.use('/api/move/', moveRouter)
+app.use('/api/favorite', favoriteRouter);
 
 // Serve static files
 app.use(express.static('build'));

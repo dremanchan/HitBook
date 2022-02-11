@@ -54,7 +54,8 @@ VALUES
 -- Favorite Table
 
 CREATE TABLE "favorite" (
-    "user_id" SERIAL PRIMARY KEY,
+    "id" SERIAL PRIMARY KEY,
+    "user_id" INTEGER,
     "characterId" INTEGER
 );
 
