@@ -45,7 +45,15 @@ function SmashCharacter() {
 
   // favorites function
   function toggleFavorites() {
-      
+
+    dispatch({
+        type:'ADD_FAVORITE',
+        payload: {
+            user: user.id,
+            characterId
+        }
+    })
+    
   }
 
   // placeholder for edit button

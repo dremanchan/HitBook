@@ -25,12 +25,14 @@ router.get('/', rejectUnauthenticated, (req, res) => {
 
 // Post Favorites Route
 router.post('/', rejectUnauthenticated, (req, res) => {
+  console.log('req.user is', req.body.user);
+  console.log('req.characterId is', req.body.characterId);
   const sqlQuery = `
-  INSERT INTO "favorite" ( "userId", "characterId" )
+  INSERT INTO "favorite" ( "user_Id", "characterId" )
   VALUES ( $1, $2 );`;
   const queryParams = [
-    req.user,
-    req.characterId
+    req.body.user,
+    req.body.characterId
   ]
   pool.query(sqlQuery, queryParams)
   .then( result => {
