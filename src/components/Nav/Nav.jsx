@@ -44,6 +44,10 @@ function Nav() {
               Smash Ultimate
             </Link>
 
+            <Link className="navLink" to="/favorite">
+              Favorites
+            </Link>
+
             
 
             <LogOutButton className="navLink" />
