@@ -4,6 +4,7 @@ import user from './user.reducer';
 import character from './character.reducer';
 import details from './details.reducer';
 import move from './move.reducer';
+import favorite from './favorite.reducer';
 
 // rootReducer is the primary reducer for our entire project
 // It bundles up all of the other reducers so our project can use them.
@@ -16,7 +17,8 @@ const rootReducer = combineReducers({
   user, // will have an id and username if someone is logged in
   character, // character data from db
   details, // organized character data
-  move,
+  move, // character moves
+  favorite, // user's favorites
 });
 
 export default rootReducer;
