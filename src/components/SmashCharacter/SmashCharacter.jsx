@@ -25,9 +25,13 @@ function SmashCharacter() {
   const moves = useSelector((store) => store.move);
   // Accessing the user reducer
   const user = useSelector((store) => store.user);
+  // Accessing the favorites reducer
+  const favorites = useSelector((store) => store.favorite);
+  console.log('favorites are', favorites);
   // Used to make unique page ID's for each character
   const params = useParams();
   const characterId = params.id;
+  console.log('user.id is', user.id);
   
 
   // Renders the details and moves on page load
@@ -43,8 +47,14 @@ function SmashCharacter() {
     });
   }, [characterId]);
 
+  useEffect(() => {
+      dispatch({
+          type: 'FETCH_FAVORITES'
+      });
+  }, []);
+
   // favorites function
-  function toggleFavorites() {
+  function addFavorite() {
 
     dispatch({
         type:'ADD_FAVORITE',
@@ -53,7 +63,7 @@ function SmashCharacter() {
             characterId
         }
     })
-    
+
   }
 
   // placeholder for edit button
@@ -74,9 +84,11 @@ function SmashCharacter() {
       <h1 className="detailHeader">Character Info</h1>
       <h2>
         {details.characterName} 
-        <Button onClick={toggleFavorites}>
+        <Button onClick={addFavorite}>
             <StarBorderIcon />
         </Button>
+
+        {}
       </h2>
       <Link to="/smashSelect">
         <img src={details.characterImg} />

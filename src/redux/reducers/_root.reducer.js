@@ -18,7 +18,7 @@ const rootReducer = combineReducers({
   character, // character data from db
   details, // organized character data
   move, // character moves
-  favorite, // user's favorites
+  favorite // user's favorites
 });
 
 export default rootReducer;

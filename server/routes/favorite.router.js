@@ -4,17 +4,21 @@ const router = express.Router();
 const { rejectUnauthenticated } = require('../modules/authentication-middleware');
 
 router.get('/', rejectUnauthenticated, (req, res) => {
-  const user = req.user;
+  console.log('req.user.id', req.user.id);
+  const user = req.user.id;
   const sqlQuery = `
-  SELECT * FROM "favorite"
+  SELECT
+    favorite."user_Id",
+    favorite."characterId" 
+  FROM "favorite"
   JOIN "user"
-  ON "user"."id"="favorite"."user_id"
-  WHERE "favorite"."user_id" =$1;
+  ON "user"."id"="favorite"."user_Id"
+  WHERE "favorite"."user_Id" =$1;
   `;
   pool.query(sqlQuery, [user])
     .then(dbRes => {
       console.log(dbRes.rows);
-      res.send(dbRes.Rows);
+      res.send(dbRes.rows);
     })
     .catch(err => {
       console.error('GET favorites failed', error);
@@ -42,6 +46,12 @@ router.post('/', rejectUnauthenticated, (req, res) => {
     res.sendStatus(500);
   })
 });
+
+router.delete('/', rejectUnauthenticated, (req, res) => {
+  const sqlQuery = `
+  DELETE FROM "favorite"
+  WHERE "favorite"."user_id" =$1 AND "favorite"."characterId" = $2;`
+})
 
 router.put('/', (req, res) => {
 
