@@ -26,7 +26,8 @@ function SmashCharacter() {
   const user = useSelector((store) => store.user);
   // Accessing the favorites reducer
   const favorites = useSelector((store) => store.favorite);
- console.log('favorites', favorites.user_Id);
+  console.log("favorites", favorites.user_Id);
+  
   // Used to make unique page ID's for each character
   const params = useParams();
   const characterId = params.id;
@@ -49,6 +50,7 @@ function SmashCharacter() {
     dispatch({
       type: "FETCH_FAVORITES",
     });
+
   }, []);
 
   // favorites function
@@ -62,16 +64,15 @@ function SmashCharacter() {
     });
   }
 
+  // Turning the string of req.params into a number to send
   const nCharacterId = parseInt(characterId);
   const currentUser = user.id;
-  console.log('params.id', params.id);
+  console.log("params.id", params.id);
   function deleteFavorite() {
     dispatch({
       type: "DELETE_FAVORITE",
-      payload: 
-        nCharacterId,
-        currentUser
-        
+      payload: nCharacterId,
+      currentUser,
     });
   }
 
@@ -91,18 +92,13 @@ function SmashCharacter() {
       <h2>
         {details.characterName}
 
-        <Button onClick={addFavorite}>
-          Add Favorite
-        </Button>
-        
-            <Button onClick={deleteFavorite}>
-            Remove Favorite
-          </Button>
-        
+        <Button onClick={addFavorite}>Add Favorite</Button>
+
+        <Button onClick={deleteFavorite}>Remove Favorite</Button>
+
         {/* <Button onClick={deleteFavorite}>
           <StarIcon />
         </Button> */}
-      
       </h2>
       <Link to="/smashSelect">
         <img src={details.characterImg} />

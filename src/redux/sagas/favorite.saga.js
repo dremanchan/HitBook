@@ -7,6 +7,7 @@ function* fetchFavorites() {
   yield put({ type: "SET_FAVORITE", payload: favorites.data });
 }
 
+
 function* addFavorite(action) {
   const favorite = yield axios.post("/api/favorite", action.payload);
   console.log("Favorite posted", favorite.data);
