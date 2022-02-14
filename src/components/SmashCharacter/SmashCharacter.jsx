@@ -13,9 +13,8 @@ import Container from "@mui/material/Container";
 import Button from "@mui/material/Button";
 
 // Icons from mui
-import StarIcon from '@mui/icons-material/Star';
-import StarBorderIcon from '@mui/icons-material/StarBorder';
-
+import StarIcon from "@mui/icons-material/Star";
+import StarBorderIcon from "@mui/icons-material/StarBorder";
 
 function SmashCharacter() {
   const dispatch = useDispatch();
@@ -27,12 +26,10 @@ function SmashCharacter() {
   const user = useSelector((store) => store.user);
   // Accessing the favorites reducer
   const favorites = useSelector((store) => store.favorite);
-  console.log('favorites are', favorites);
   // Used to make unique page ID's for each character
   const params = useParams();
   const characterId = params.id;
-  console.log('user.id is', user.id);
-  
+  console.log("user.id is", user.id);
 
   // Renders the details and moves on page load
   useEffect(() => {
@@ -48,22 +45,33 @@ function SmashCharacter() {
   }, [characterId]);
 
   useEffect(() => {
-      dispatch({
-          type: 'FETCH_FAVORITES'
-      });
+    dispatch({
+      type: "FETCH_FAVORITES",
+    });
   }, []);
 
   // favorites function
   function addFavorite() {
-
     dispatch({
-        type:'ADD_FAVORITE',
-        payload: {
-            user: user.id,
-            characterId
-        }
-    })
+      type: "ADD_FAVORITE",
+      payload: {
+        user: user.id,
+        characterId,
+      },
+    });
+  }
 
+  const nCharacterId = parseInt(characterId);
+  const currentUser = user.id;
+  console.log('params.id', params.id);
+  function deleteFavorite() {
+    dispatch({
+      type: "DELETE_FAVORITE",
+      payload: 
+        nCharacterId,
+        currentUser
+        
+    });
   }
 
   // placeholder for edit button
@@ -76,19 +84,20 @@ function SmashCharacter() {
     console.log("move deleted");
   }
 
-
-
   return (
     <>
-    
       <h1 className="detailHeader">Character Info</h1>
       <h2>
-        {details.characterName} 
-        <Button onClick={addFavorite}>
-            <StarBorderIcon />
-        </Button>
+        {details.characterName}
 
-        {}
+        <Button onClick={addFavorite}>
+          <StarBorderIcon />
+        </Button>
+        
+        <Button onClick={deleteFavorite}>
+          <StarIcon />
+        </Button>
+      
       </h2>
       <Link to="/smashSelect">
         <img src={details.characterImg} />

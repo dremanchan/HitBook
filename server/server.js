@@ -30,7 +30,7 @@ app.use('/api/user', userRouter);
 app.use('/api/character', characterRouter);
 app.use('/api/details', detailsRouter)
 app.use('/api/move/', moveRouter)
-app.use('/api/favorite', favoriteRouter);
+app.use('/api/favorite/', favoriteRouter);
 
 // Serve static files
 app.use(express.static('build'));
