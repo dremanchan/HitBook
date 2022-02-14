@@ -1,12 +1,12 @@
 import { useState, React } from "react";
 import "./AdminPage.css";
 import { useDispatch } from "react-redux";
-import { Textarea } from '@mui/material'
+
 
 function AdminPage() {
   const dispatch = useDispatch();
   const [characterName, setCharacterName] = useState("");
-  const [gameId, setGameId] = useState(0);
+  const [gameId, setGameId] = useState(1);
   const [characterStrategy, setCharacterStrategy] = useState("");
   const [characterCombos, setCharacterCombos] = useState("");
   const [characterImg, setCharacterImg] = useState("");

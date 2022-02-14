@@ -1,54 +1,62 @@
-import { React, useEffect } from 'react';
-import { Link, useParams } from 'react-router-dom';
-import { useSelector, useDispatch } from 'react-redux';
-import Container from '@mui/material/Container';
-import Button from '@mui/material/Button';
+import { React, useEffect } from "react";
+import { Link, useParams } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import Container from "@mui/material/Container";
+import Button from "@mui/material/Button";
 
 function FavoritePage() {
-    const dispatch = useDispatch();
-    const details = useSelector((store) => store.details);
-    const user = useSelector((store) => store.user);
-    const favorite = useSelector ((store) => store.favorite);
-    const character = useSelector ((store) => store.character);
+  const dispatch = useDispatch();
+  const details = useSelector((store) => store.details);
+  const user = useSelector((store) => store.user);
+  const favorite = useSelector((store) => store.favorite);
+  const favoriteStuff = useSelector((store) => store.favoriteStuff);
+  console.log("favoritePage stuff", favoriteStuff);
+  const character = useSelector((store) => store.character);
+  console.log("character", character);
+  const params = useParams();
+  const characterId = params.id;
+  const currentUser = user.id;
+  console.log(currentUser);
 
-    const params = useParams();
-    const characterId = params.id;
-    const currentUser = user.id;
+  useEffect(() => {
+    dispatch({
+      type: "FETCH_FAVORITE_PAGE",
+      payload: user.id,
+    });
 
-    // Renders details on page load
+    dispatch({
+      type: "FETCH_CHARACTERS",
+    });
+  }, [user.id]);
 
-    
-    const nCharacterId = parseInt(characterId);
-    function deleteFavorite() {
-        dispatch({
-          type: "DELETE_FAVORITE",
-          payload: currentUser,
-        });
-      }
+  const nCharacterId = parseInt(characterId);
+  function deleteFavorite() {
+    dispatch({
+      type: "DELETE_FAVORITE",
+      payload: currentUser,
+    });
+  }
 
-    return (
-        <>  
-            <h1>Favorites</h1>
-            <Container>
+  return (
+    <>
+      <h1>Favorites</h1>
 
-            
-                <h3>
-                    {details.characterName}
-                    <Button onClick={deleteFavorite}>
-                        Unfavorite
-                    </Button>
-                </h3>
-                <Link to={`/smashcharacter/${character.id}`}>
-                    <img src={details.characterImg} />
-                </Link>
-           
-            
+      {character.map((char) => {
+        return (
+          <div key={char.id}>
+            <>
+              <h3>
+                {char.name}
+                <Button onClick={deleteFavorite}>Remove Favorite</Button>
+              </h3>
 
-
-            {/* Render favorites here with toggleFavorites button */}
-            </Container>
-        </>
-    )
+              <img src={char.image} />
+            </>
+          </div>
+        );
+      })}
+    </>
+  );
 }
 
 export default FavoritePage;
