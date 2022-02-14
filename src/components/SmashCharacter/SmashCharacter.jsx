@@ -26,6 +26,7 @@ function SmashCharacter() {
   const user = useSelector((store) => store.user);
   // Accessing the favorites reducer
   const favorites = useSelector((store) => store.favorite);
+ console.log('favorites', favorites.user_Id);
   // Used to make unique page ID's for each character
   const params = useParams();
   const characterId = params.id;
@@ -91,12 +92,16 @@ function SmashCharacter() {
         {details.characterName}
 
         <Button onClick={addFavorite}>
-          <StarBorderIcon />
+          Add Favorite
         </Button>
         
-        <Button onClick={deleteFavorite}>
+            <Button onClick={deleteFavorite}>
+            Remove Favorite
+          </Button>
+        
+        {/* <Button onClick={deleteFavorite}>
           <StarIcon />
-        </Button>
+        </Button> */}
       
       </h2>
       <Link to="/smashSelect">
