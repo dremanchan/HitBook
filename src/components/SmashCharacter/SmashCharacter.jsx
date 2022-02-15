@@ -75,6 +75,10 @@ function SmashCharacter() {
     });
   }
 
+  function updateCharacter() {
+    console.log('Character updated');
+  }
+
   // placeholder for edit button
   function editMove() {
     console.log("editMove here");
@@ -87,7 +91,12 @@ function SmashCharacter() {
 
   return (
     <>
-      <h1 className="detailHeader">Character Info</h1>
+      <h1 className="detailHeader">
+        Character Info
+        <Button onClick={updateCharacter}>
+          Update
+        </Button>
+      </h1>
       <h2>
         {details.characterName}
 
@@ -95,9 +104,6 @@ function SmashCharacter() {
 
         <Button onClick={deleteFavorite}>Remove Favorite</Button>
 
-        {/* <Button onClick={deleteFavorite}>
-          <StarIcon />
-        </Button> */}
       </h2>
       <Link to="/smashSelect">
         <img src={details.characterImg} />
