@@ -11,8 +11,15 @@ function* fetchAllCharacters() {
     }
 }
 
+function* addCharacter(action) {
+    const character = yield axios.post('/api/character', action.payload);
+    console.log('Character added', character.data);
+    yield put({ type: 'FETCH_CHARACTERS'})
+}
+
 function* characterSaga() {
     yield takeEvery('FETCH_CHARACTERS', fetchAllCharacters);
+    yield takeEvery('ADD_NEW_CHARACTER', addCharacter);
 }
 
 export default characterSaga;
