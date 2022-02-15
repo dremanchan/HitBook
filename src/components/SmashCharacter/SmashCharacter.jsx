@@ -76,7 +76,12 @@ function SmashCharacter() {
   }
 
   function updateCharacter() {
-    console.log('Character updated');
+    console.log('Selected character #', characterId);
+    dispatch({
+      type: 'SET_SELECTED_CHARACTER',
+      payload: characterId
+    })
+
   }
 
   // placeholder for edit button
