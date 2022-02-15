@@ -25,6 +25,7 @@ import SmashSelect from "../SmashSelect/SmashSelect";
 import AdminPage from "../AdminPage/AdminPage";
 import SmashCharacter from "../SmashCharacter/SmashCharacter";
 import FavoritePage from "../FavoritePage/FavoritePage";
+import UpdateCharacter from '../UpdateCharacter/UpdateCharacter';
 
 import Container from "@mui/material/Container";
 
@@ -107,6 +108,10 @@ function App() {
                 <FavoritePage />
               </ProtectedRoute>
 
+              <ProtectedRoute exact path="/updatecharacter">
+                <UpdateCharacter />
+              </ProtectedRoute>
+
               <Route exact path="/login">
                 {user.id ? (
                   // If the user is already logged in,
@@ -132,8 +137,8 @@ function App() {
               <Route exact path="/home">
                 {user.id ? (
                   // If the user is already logged in,
-                  // redirect them to the /user page
-                  <Redirect to="/user" />
+                  // redirect them to the /instructions page
+                  <Redirect to="/instructions" />
                 ) : (
                   // Otherwise, show the Landing page
                   <LandingPage />

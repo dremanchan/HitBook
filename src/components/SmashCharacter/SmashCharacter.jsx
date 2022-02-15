@@ -1,4 +1,4 @@
-import { useEffect, React } from "react";
+import { useEffect, useState, React } from "react";
 import { Link, useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import "./SmashCharacter.css";
@@ -93,9 +93,11 @@ function SmashCharacter() {
     <>
       <h1 className="detailHeader">
         Character Info
-        <Button onClick={updateCharacter}>
-          Update
-        </Button>
+        <Link to="/updatecharacter">
+          <Button onClick={updateCharacter}>
+            Update
+          </Button>
+        </Link>
       </h1>
       <h2>
         {details.characterName}
