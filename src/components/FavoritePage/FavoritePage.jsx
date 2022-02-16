@@ -11,8 +11,8 @@ function FavoritePage() {
   const details = useSelector((store) => store.details);
   const user = useSelector((store) => store.user);
   const favorite = useSelector((store) => store.favorite);
+  console.log('favorite', favorite);
   const favoriteStuff = useSelector((store) => store.favoriteStuff);
-  console.log("favoritePage stuff", favoriteStuff);
   const character = useSelector((store) => store.character);
   console.log("character", character);
   const params = useParams();
@@ -22,8 +22,7 @@ function FavoritePage() {
 
   useEffect(() => {
     dispatch({
-      type: "FETCH_FAVORITE_PAGE",
-      payload: user.id,
+      type: "FETCH_FAVORITE_PAGE"
     });
 
     dispatch({
@@ -42,11 +41,13 @@ function FavoritePage() {
   return (
     <>
       <h1>Favorites</h1>
-
-      {character.map((char) => {
+    
+    
+      {favoriteStuff.map((char) => {
         return (
           <div key={char.id}>
             <>
+            
               <h3>
                 {char.name}
                 <Button onClick={deleteFavorite}>Remove Favorite</Button>
@@ -55,10 +56,10 @@ function FavoritePage() {
               <img className="favImg" src={char.image} />
             </>
           </div>
-        );
-      })}
+        )}
+      )}
     </>
-  );
-}
+  )}
+
 
 export default FavoritePage;

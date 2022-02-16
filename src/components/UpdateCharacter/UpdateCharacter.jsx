@@ -3,6 +3,7 @@ import { Link, useHistory, useParams } from "react-router-dom";
 import { MDCTextField } from "@material/textfield";
 import { useDispatch, useSelector } from "react-redux";
 
+
 function UpdateCharacter() {
   const dispatch = useDispatch();
   const character = useSelector((store) => store.selectedCharacter);
@@ -31,6 +32,10 @@ console.log('selected character is', character);
       },
     });
     history.push(`/smashcharacter/${character}`);
+  }
+
+  function cancelBtn() {
+    history.push(`/smashcharacter/${params.id}`)
   }
 
   return (
@@ -68,6 +73,9 @@ console.log('selected character is', character);
 
         <button>Submit</button>
       </form>
+      <button onClick={cancelBtn}>
+        Cancel
+      </button>
     </>
   );
 }
