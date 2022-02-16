@@ -15,7 +15,9 @@ function* addFavorite(action) {
 }
 
 function* deleteFavorite(action) {
+  console.log('payload is', action.payload);
    try{ yield axios.delete(`/api/favorite/${action.payload}` );
+   
 
     yield put({ type: "FETCH_FAVORITES"});
 }

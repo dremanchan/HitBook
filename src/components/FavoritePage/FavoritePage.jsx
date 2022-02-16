@@ -31,10 +31,15 @@ function FavoritePage() {
   }, [user.id]);
 
   const nCharacterId = parseInt(characterId);
-  function deleteFavorite() {
+  function deleteFavorite(char) {
+    console.log('char is', char);
     dispatch({
       type: "DELETE_FAVORITE",
-      payload: currentUser,
+      payload: {
+          charId: char.characterId,
+          user: user.id
+            }
+              
     });
   }
 
@@ -50,7 +55,7 @@ function FavoritePage() {
             
               <h3>
                 {char.name}
-                <Button onClick={deleteFavorite}>Remove Favorite</Button>
+                <Button onClick={(evt => deleteFavorite(char))}>Remove Favorite</Button>
               </h3>
 
               <img className="favImg" src={char.image} />
