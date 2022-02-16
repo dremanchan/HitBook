@@ -1,23 +1,41 @@
-import { useState, React } from "react";
-import { Link, useHistory } from "react-router-dom";
+import { useState, React, useEffect } from "react";
+import { Link, useHistory, useParams } from "react-router-dom";
 import { MDCTextField } from "@material/textfield";
 import { useDispatch, useSelector } from "react-redux";
 
 function UpdateCharacter() {
   const dispatch = useDispatch();
+  const character = useSelector((store) => store.selectedCharacter);
   const history = useHistory();
+  const params = useParams();
   const [name, setName] = useState("");
   const [strategy, setStrategy] = useState("");
   const [combos, setCombos] = useState("");
   const [image, setImage] = useState("");
 
-  function handleSubmit() {
-    history.push("/smashcharacter/1");
+
+console.log('selected character is', character);
+ 
+  function handleSubmit(evt) {
+    evt.preventDefault();
+
+    dispatch({
+      type: "UPDATE_CHARACTER",
+      payload: {
+        name: name,
+        strategy: strategy,
+        combos: combos,
+        image: image,
+        id: params.id
+        
+      },
+    });
+    history.push(`/smashcharacter/${character}`);
   }
 
   return (
     <>
-        <h1>Update Character</h1>
+      <h1>Update Character</h1>
       <form onSubmit={handleSubmit}>
         <p> Character Name: </p>
         <input

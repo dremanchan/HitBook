@@ -26,6 +26,6 @@ export default function* rootSaga() {
     moveSaga(),
     favoriteSaga(),
     favoritePageSaga(),
-    selectedCharacterSaga();
+    selectedCharacterSaga(),
   ]);
 }

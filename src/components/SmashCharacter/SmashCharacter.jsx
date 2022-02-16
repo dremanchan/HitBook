@@ -98,7 +98,7 @@ function SmashCharacter() {
     <>
       <h1 className="detailHeader">
         Character Info
-        <Link to="/updatecharacter">
+        <Link to={`/updatecharacter/${characterId}`}>
           <Button onClick={updateCharacter}>
             Update
           </Button>

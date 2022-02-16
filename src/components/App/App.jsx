@@ -108,7 +108,7 @@ function App() {
                 <FavoritePage />
               </ProtectedRoute>
 
-              <ProtectedRoute exact path="/updatecharacter">
+              <ProtectedRoute exact path="/updatecharacter/:id">
                 <UpdateCharacter />
               </ProtectedRoute>
 

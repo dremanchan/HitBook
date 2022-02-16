@@ -24,13 +24,14 @@ router.get("/", rejectUnauthenticated, (req, res) => {
 
 // Get selected character
 
-router.get('/:id', rejectUnauthenticated, (req, res) => {
-  const sqlText =`
+router.get("/:id", rejectUnauthenticated, (req, res) => {
+  const sqlText = `
     SELECT * FROM character
     WHERE "id" = $1
     ;`;
-  const queryParams = [ req.params.id ]
-  pool.query(sqlText, queryParams)
+  const queryParams = [req.params.id];
+  pool
+    .query(sqlText, queryParams)
     .then((result) => {
       res.sendStatus(201);
     })
@@ -39,7 +40,6 @@ router.get('/:id', rejectUnauthenticated, (req, res) => {
       res.sendStatus(500);
     });
 });
-
 
 /**
  * POST route template
@@ -66,16 +66,16 @@ router.post("/", rejectUnauthenticated, (req, res) => {
 });
 
 // Update characters
-router.put(":id", rejectUnauthenticated, (req, res) => {
+router.put("/:id", rejectUnauthenticated, (req, res) => {
   const sqlText = `
     UPDATE "character"
     SET 
       "name" = $1,
       "strategy" = $2,
       "combos" = $3,
-      "image" = $4,
-    WHERE "id" = $5
-'`;
+      "image" = $4
+    WHERE "id" = $5;
+`;
   const queryParams = [
     req.body.name,
     req.body.strategy,
