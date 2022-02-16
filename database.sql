@@ -13,7 +13,7 @@ CREATE TABLE "user" (
 -- This table holds the character information
 CREATE TABLE "character" (
     "id" SERIAL PRIMARY KEY,
-    "name" VARCHAR (100),
+    "name" VARCHAR (100) UNIQUE,
     "gameId" INTEGER,
     "strategy" VARCHAR (4096),
     "combos" VARCHAR (2048),
