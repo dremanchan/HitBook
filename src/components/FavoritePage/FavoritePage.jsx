@@ -1,8 +1,10 @@
 import { React, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
+import './FavoritePage.css';
 import Container from "@mui/material/Container";
 import Button from "@mui/material/Button";
+
 
 function FavoritePage() {
   const dispatch = useDispatch();
@@ -50,7 +52,7 @@ function FavoritePage() {
                 <Button onClick={deleteFavorite}>Remove Favorite</Button>
               </h3>
 
-              <img src={char.image} />
+              <img className="favImg" src={char.image} />
             </>
           </div>
         );
