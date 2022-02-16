@@ -113,7 +113,7 @@ function SmashCharacter() {
 
       </h2>
       <Link to="/smashSelect">
-        <img src={details.characterImg} />
+        <img className="characterPic" src={details.characterImg}/>
       </Link>
       <h4>Strategy:</h4>
       <h5>{details.characterStrategy}</h5>
