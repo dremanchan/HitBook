@@ -26,8 +26,10 @@ function SmashCharacter() {
   const user = useSelector((store) => store.user);
   // Accessing the favorites reducer
   const favorites = useSelector((store) => store.favorite);
-  console.log("favorites", favorites.user_Id);
-  
+  // UseState for edit form
+  const [newInput, setNewInput] = useState("");
+  const [newFrameData, setNewFrameData] = useState("");
+
   // Used to make unique page ID's for each character
   const params = useParams();
   const characterId = params.id;
@@ -50,7 +52,6 @@ function SmashCharacter() {
     dispatch({
       type: "FETCH_FAVORITES",
     });
-
   }, []);
 
   // favorites function
@@ -76,17 +77,22 @@ function SmashCharacter() {
   }
 
   function updateCharacter() {
-    console.log('Selected character #', characterId);
+    console.log("Selected character #", characterId);
     dispatch({
-      type: 'SET_SELECTED_CHARACTER',
-      payload: characterId
-    })
-
+      type: "SET_SELECTED_CHARACTER",
+      payload: characterId,
+    });
   }
 
-  // placeholder for edit button
+  // Renders Edit text field
+  let editClicked = true;
+  function moveForm() {
+    editClicked = true;
+    console.log("clicked is", editClicked);
+  }
+
   function editMove() {
-    console.log("editMove here");
+    let editClicked = false;
   }
 
   // placeholder to delete moves
@@ -99,9 +105,7 @@ function SmashCharacter() {
       <h1 className="detailHeader">
         Character Info
         <Link to={`/updatecharacter/${characterId}`}>
-          <Button onClick={updateCharacter}>
-            Update
-          </Button>
+          <Button onClick={updateCharacter}>Update</Button>
         </Link>
       </h1>
       <h2>
@@ -110,10 +114,9 @@ function SmashCharacter() {
         <Button onClick={addFavorite}>Add Favorite</Button>
 
         <Button onClick={deleteFavorite}>Remove Favorite</Button>
-
       </h2>
       <Link to="/smashSelect">
-        <img className="characterPic" src={details.characterImg}/>
+        <img className="characterPic" src={details.characterImg} />
       </Link>
       <h4>Strategy:</h4>
       <h5>{details.characterStrategy}</h5>
@@ -163,6 +166,29 @@ function SmashCharacter() {
           </TableBody>
         </Table>
       </TableContainer>
+
+      {/* Conditional Rendering Move Change forms */}
+      {editClicked ? (
+        <div>
+          <form onSubmit={editMove}>
+            <p>New Input</p>
+            <input
+              type="text"
+              value={newInput}
+              onChange={(evt) => setNewInput(evt.target.value)}
+            />
+            <p>New Frame Data</p>
+            <input
+              type="text"
+              value={newFrameData}
+              onChange={(evt) => setNewFrameData(evt.target.value)}
+            />
+            <Button onClick={editMove}>Submit</Button>
+          </form>
+        </div>
+      ) : (
+        <div></div>
+      )}
     </>
   );
 }
