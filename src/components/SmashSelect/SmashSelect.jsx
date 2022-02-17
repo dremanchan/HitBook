@@ -12,6 +12,16 @@ function SmashSelect() {
     dispatch({ type: "FETCH_CHARACTERS" });
   }, []);
 
+  function charSelect(character) {
+    console.log('character is', character);
+    const char = character.id;
+    console.log('char is', char);
+    dispatch({
+      type: 'SET_SELECTED_CHARACTER',
+      payload: char
+    })
+  }
+
   return (
     <>
       <h1 className="smashSelectTitle">Select Your Character</h1>
@@ -22,7 +32,10 @@ function SmashSelect() {
             <div key={character.id}>
               <h3>{character.name}</h3>
               <Link to={`/smashcharacter/${character.id}`}>
-                <img className="selectImg" id={character.id} src={character.thumbnail} />
+                <img className="selectImg" 
+                    id={character.id} 
+                    onClick={(evt) => charSelect(character)}
+                    src={character.thumbnail} />
               </Link>
             </div>
           );
