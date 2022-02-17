@@ -50,6 +50,31 @@ router.post("/", (req, res) => {
     })
 });
 
+// Put Route
+router.put('/:id', rejectUnauthenticated, (req, res) => {
+  const sqlQuery =`
+    UPDATE "move"
+    SET
+      "input" = $1,
+      "frames" = $2,
+    WHERE "id" = $3;
+  `;
+  const queryParams = [
+    req.body.input,
+    req.body.frames,
+    req.params.id
+  ];
+  pool
+    .query(sqlQuery, queryParams)
+    .then((result) => {
+      res.sendStatus(200);
+    })
+    .catch((err) => {
+      console.error('PUT move failed', err);
+      res.sendStatus(500);
+    })
+})
+
 // Delete Route
 router.delete("/:id", rejectUnauthenticated, (req, res) => {
   console.log('req.body is,', req.body.id);
