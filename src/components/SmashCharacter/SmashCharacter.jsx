@@ -27,7 +27,6 @@ function SmashCharacter() {
   // Accessing the favorites reducer
   const favorites = useSelector((store) => store.favorite);
 
-
   // Used to make unique page ID's for each character
   const params = useParams();
   const characterId = params.id;
@@ -38,21 +37,15 @@ function SmashCharacter() {
       type: "FETCH_DETAILS",
       payload: characterId,
     }),
-
-    dispatch({
-      type: "FETCH_MOVES",
-      payload: characterId,
-    }),
-     
-    dispatch({
-      type: "FETCH_FAVORITES",
-      payload: characterId,
-    })
-
-    
-  }, [params.id,])
-  
- 
+      dispatch({
+        type: "FETCH_MOVES",
+        payload: characterId,
+      }),
+      dispatch({
+        type: "FETCH_FAVORITES",
+        payload: characterId,
+      });
+  }, [params.id]);
 
   // favorites function
   function addFavorite() {
@@ -84,16 +77,15 @@ function SmashCharacter() {
     });
   }
 
- 
   function handleEdit(move) {
     const moveId = move.id;
     dispatch({
-      type:'SET_SELECTED_MOVE',
-      payload: moveId
-    })
+      type: "SET_SELECTED_MOVE",
+      payload: moveId,
+    });
   }
 
-   // Renders Edit text field
+  // Renders Edit text field
   //  let editClicked = true;
   // function editMove() {
   //   editClicked = false;
@@ -104,32 +96,31 @@ function SmashCharacter() {
   function deleteMove(move) {
     console.log("move is", move);
     const moveId = move.id;
-    console.log('moveId is', move.id);
+    console.log("moveId is", move.id);
     const char = move.characterId;
-    console.log('move.characterId', move.characterId);
+    console.log("move.characterId", move.characterId);
     dispatch({
-      type: 'DELETE_SET_MOVE',
+      type: "DELETE_SET_MOVE",
       payload: {
         id: moveId,
-        characterId: char
-      }
-    })
+        characterId: char,
+      },
+    });
     dispatch({
-      type: 'FETCH_MOVES',
-      payload: req.params.id
-
+      type: "FETCH_MOVES",
+      payload: req.params.id,
     });
   }
-
-
 
   return (
     <>
       <h1 className="detailHeader">
         Character Info
-        <Link to={`/updatecharacter/${characterId}`}>
-          <Button onClick={updateCharacter}>Update</Button>
-        </Link>
+        {user.admin === true && (
+          <Link to={`/updatecharacter/${characterId}`}>
+            <Button onClick={updateCharacter}>Update</Button>
+          </Link>
+        )}
       </h1>
       <h2>
         {details.characterName}
@@ -145,11 +136,9 @@ function SmashCharacter() {
       <h5>{details.characterStrategy}</h5>
       <h4>Combos:</h4>
       <h5>{details.characterCombos}</h5>
-      
+
       <Link to="/addmove">
-        <Button onClick={updateCharacter}>
-          Add Move
-        </Button>
+        <Button onClick={updateCharacter}>Add Move</Button>
       </Link>
 
       <TableContainer component={Paper}>
@@ -182,13 +171,17 @@ function SmashCharacter() {
                     {/* Edit move button code */}
                     <TableCell align="right">
                       <Link to="/updatemove">
-                        <Button onClick={(evt) => handleEdit(move)}>Edit</Button>
+                        <Button onClick={(evt) => handleEdit(move)}>
+                          Edit
+                        </Button>
                       </Link>
                     </TableCell>
 
                     {/* Delete move button here */}
                     <TableCell align="right">
-                      <Button onClick={(evt) => deleteMove(move)}>Delete</Button>
+                      <Button onClick={(evt) => deleteMove(move)}>
+                        Delete
+                      </Button>
                     </TableCell>
                   </>
                 )}
@@ -219,8 +212,6 @@ function SmashCharacter() {
         </div>
       ) : (
         <div></div> */}
-      
-      
     </>
   );
 }
