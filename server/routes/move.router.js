@@ -5,9 +5,7 @@ const {
   rejectUnauthenticated,
 } = require("../modules/authentication-middleware");
 
-/**
- * GET route template
- */
+// Router to render moves table
 router.get("/", rejectUnauthenticated, (req, res) => {
   const characterId = req.query.id;
   const sqlQuery = `
@@ -32,11 +30,24 @@ router.get("/", rejectUnauthenticated, (req, res) => {
     });
 });
 
-/**
- * POST route template
- */
+// Route to add new moves
 router.post("/", (req, res) => {
-  // POST route code here
+  const sqlQuery =`
+  INSERT INTO "move" ("input", "frames", "characterId")
+  VALUES ($1, $2, $3);`;
+  const queryParams = [
+    req.body.input,
+    req.body.frames,
+    req.body.characterId
+  ];
+  pool.query(sqlQuery, queryParams)
+    .then(dbRes => {
+      res.sendStatus(201);
+    })
+    .catch((err) => {
+      console.error('POST moves failed', err);
+      res.sendStatus(500);
+    })
 });
 
 // Delete Route
