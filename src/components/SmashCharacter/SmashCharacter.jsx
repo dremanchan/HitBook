@@ -97,9 +97,18 @@ function SmashCharacter() {
   }
 
   // placeholder to delete moves
-  function deleteMove() {
-    console.log("move deleted");
+  function deleteMove(move) {
+    console.log("move is", move);
+    const moveId = move.id;
+    console.log('moveId is', move.id);
+    const char = move.characterId;
+    console.log('move.characterId', move.characterId);
+    dispatch({
+      type: 'DELETE_SET_MOVE',
+      payload: moveId, char
+    })
   }
+
 
   return (
     <>
@@ -141,7 +150,7 @@ function SmashCharacter() {
           <TableBody>
             {moves?.map((move) => (
               <TableRow
-                key={move.moveInput}
+                key={move.id}
                 sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
               >
                 <TableCell component="th" scope="row">
@@ -158,7 +167,7 @@ function SmashCharacter() {
 
                     {/* Delete move button here */}
                     <TableCell align="right">
-                      <Button onClick={deleteMove}>Delete</Button>
+                      <Button onClick={(evt) => deleteMove(move)}>Delete</Button>
                     </TableCell>
                   </>
                 )}
