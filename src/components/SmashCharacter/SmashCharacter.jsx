@@ -26,33 +26,33 @@ function SmashCharacter() {
   const user = useSelector((store) => store.user);
   // Accessing the favorites reducer
   const favorites = useSelector((store) => store.favorite);
-  // UseState for edit form
-  const [newInput, setNewInput] = useState("");
-  const [newFrameData, setNewFrameData] = useState("");
+
 
   // Used to make unique page ID's for each character
   const params = useParams();
   const characterId = params.id;
-  console.log("user.id is", user.id);
 
   // Renders the details and moves on page load
   useEffect(() => {
     dispatch({
       type: "FETCH_DETAILS",
       payload: characterId,
-    });
+    }),
 
     dispatch({
       type: "FETCH_MOVES",
       payload: characterId,
-    });
-  }, [characterId]);
-
-  useEffect(() => {
+    }),
+     
     dispatch({
       type: "FETCH_FAVORITES",
-    });
-  }, []);
+      payload: characterId,
+    })
+
+    
+  }, [params.id,])
+  
+ 
 
   // favorites function
   function addFavorite() {
@@ -84,17 +84,21 @@ function SmashCharacter() {
     });
   }
 
-  // Renders Edit text field
-  let editClicked = true;
-  function handleEdit() {
-    let editClicked = true;
-    console.log("editClicked is", editClicked);
+ 
+  function handleEdit(move) {
+    const moveId = move.id;
+    dispatch({
+      type:'SET_SELECTED_MOVE',
+      payload: moveId
+    })
   }
 
-  function editMove() {
-    editClicked = false;
-    console.log('editClicked is', editClicked);
-  }
+   // Renders Edit text field
+  //  let editClicked = true;
+  // function editMove() {
+  //   editClicked = false;
+  //   console.log('editClicked is', editClicked);
+  // }
 
   // placeholder to delete moves
   function deleteMove(move) {
@@ -105,8 +109,16 @@ function SmashCharacter() {
     console.log('move.characterId', move.characterId);
     dispatch({
       type: 'DELETE_SET_MOVE',
-      payload: moveId, char
+      payload: {
+        id: moveId,
+        characterId: char
+      }
     })
+    dispatch({
+      type: 'FETCH_MOVES',
+      payload: req.params.id
+
+    });
   }
 
 
@@ -169,7 +181,9 @@ function SmashCharacter() {
                   <>
                     {/* Edit move button code */}
                     <TableCell align="right">
-                      <Button onClick={handleEdit}>Edit</Button>
+                      <Link to="/updatemove">
+                        <Button onClick={(evt) => handleEdit(move)}>Edit</Button>
+                      </Link>
                     </TableCell>
 
                     {/* Delete move button here */}
@@ -184,7 +198,7 @@ function SmashCharacter() {
         </Table>
       </TableContainer>
 
-      {/* Conditional Rendering Move Change forms */}
+      {/* Conditional Rendering Move Change forms
       {editClicked ? (
         <div>
           <form onSubmit={editMove}>
@@ -204,8 +218,8 @@ function SmashCharacter() {
           </form>
         </div>
       ) : (
-        <div></div>
-      )}
+        <div></div> */}
+      
       
     </>
   );

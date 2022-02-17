@@ -6,8 +6,8 @@ const {
 } = require("../modules/authentication-middleware");
 
 // Router to render moves table
-router.get("/", rejectUnauthenticated, (req, res) => {
-  const characterId = req.query.id;
+router.get("/:id", rejectUnauthenticated, (req, res) => {
+  const characterId = req.params.id;
   const sqlQuery = `
     SELECT 
         "move"."input" AS "moveInput",
@@ -56,7 +56,7 @@ router.put('/:id', rejectUnauthenticated, (req, res) => {
     UPDATE "move"
     SET
       "input" = $1,
-      "frames" = $2,
+      "frames" = $2
     WHERE "id" = $3;
   `;
   const queryParams = [
@@ -76,8 +76,8 @@ router.put('/:id', rejectUnauthenticated, (req, res) => {
 })
 
 // Delete Route
-router.delete("/:id", rejectUnauthenticated, (req, res) => {
-  console.log('req.body is,', req.body.id);
+router.delete("/:id/:characterId", rejectUnauthenticated, (req, res) => {
+  
 
   const sqlQuery = `
   DELETE FROM "move"
@@ -85,8 +85,9 @@ router.delete("/:id", rejectUnauthenticated, (req, res) => {
   ;`;
   // This isn't working
   const queryParams = [
-    req.body.id,
-    req.body.characterId
+    req.params.id,
+    req.params.characterId
+  
   ];
   pool
     .query(sqlQuery, queryParams)

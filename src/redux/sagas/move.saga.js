@@ -3,7 +3,7 @@ import { put, takeEvery } from 'redux-saga/effects';
 // GET moves
 function* fetchMoves(action) {
     try {
-        const move = yield axios.get('/api/move', {params: {id: action.payload}});
+        const move = yield axios.get(`/api/move/${action.payload}`);
         console.log('GET move results', move.data);
         yield put ({ type: 'SET_MOVES', payload: move.data });
     }
@@ -35,7 +35,7 @@ function* updateMove(action) {
 // Delete moves saga
 function* deleteMove(action) {
     try {
-        const move = yield axios.delete(`/api/move/${action.payload}`);
+        const move = yield axios.delete(`/api/move/${action.payload.id}/${action.payload.characterId}`);
 
         yield put({ type: 'FETCH_MOVES' })
     }

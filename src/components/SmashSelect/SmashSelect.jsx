@@ -13,9 +13,8 @@ function SmashSelect() {
   }, []);
 
   function charSelect(character) {
-    console.log('character is', character);
+    // Setting the character.id to a variable
     const char = character.id;
-    console.log('char is', char);
     dispatch({
       type: 'SET_SELECTED_CHARACTER',
       payload: char
@@ -31,6 +30,9 @@ function SmashSelect() {
           return (
             <div key={character.id}>
               <h3>{character.name}</h3>
+
+              {/* Sends user to selected character page and dispatches
+              selected character */}
               <Link to={`/smashcharacter/${character.id}`}>
                 <img className="selectImg" 
                     id={character.id} 
