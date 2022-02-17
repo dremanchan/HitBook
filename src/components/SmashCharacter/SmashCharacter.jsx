@@ -86,13 +86,14 @@ function SmashCharacter() {
 
   // Renders Edit text field
   let editClicked = true;
-  function moveForm() {
-    editClicked = true;
-    console.log("clicked is", editClicked);
+  function handleEdit() {
+    let editClicked = true;
+    console.log("editClicked is", editClicked);
   }
 
   function editMove() {
-    let editClicked = false;
+    editClicked = false;
+    console.log('editClicked is', editClicked);
   }
 
   // placeholder to delete moves
@@ -152,7 +153,7 @@ function SmashCharacter() {
                   <>
                     {/* Edit move button code */}
                     <TableCell align="right">
-                      <Button onClick={editMove}>Edit</Button>
+                      <Button onClick={handleEdit}>Edit</Button>
                     </TableCell>
 
                     {/* Delete move button here */}
@@ -189,6 +190,7 @@ function SmashCharacter() {
       ) : (
         <div></div>
       )}
+      <Button onClick={editMove}>Render</Button>
     </>
   );
 }

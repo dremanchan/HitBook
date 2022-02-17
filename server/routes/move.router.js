@@ -34,4 +34,22 @@ router.post('/', (req, res) => {
   // POST route code here
 });
 
+router.delete('/:id', (req, res) => {
+  const sqlQuery =`
+  DELETE FROM "move"
+  WHERE "move"."id" = $1 AND "move"."characterId" = $2 
+  ;`;
+  const queryParams = [
+    req.body.id,
+    req.params.id
+  ];
+  pool.query(sqlQuery, queryParams)
+  .then( dbRes => {
+    res.sendStatus(201);
+  }).catch(err => {
+    console.error('DELETE move failed', err);
+    res.sendStatus(500);
+  })
+})
+
 module.exports = router;
