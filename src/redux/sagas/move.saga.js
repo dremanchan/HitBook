@@ -20,6 +20,18 @@ function* addMove(action) {
 
 }
 
+// Update moves saga
+function* updateMove(action) {
+    try {
+        const res = yield axios.put(`/api/move/${action.payload.id}`, action.payload);
+
+        yield put({ type: 'FETCH_MOVES' });
+    }
+    catch (err) {
+        console.error('update move failed', err);
+    }
+}
+
 // Delete moves saga
 function* deleteMove(action) {
     try {
@@ -32,10 +44,13 @@ function* deleteMove(action) {
     }
 }
 
+
+
 function* moveSaga() {
     yield takeEvery('FETCH_MOVES', fetchMoves);
     yield takeEvery('ADD_MOVE', addMove);
     yield takeEvery('DELETE_SET_MOVE', deleteMove);
+    yield takeEvery('UPDATE_MOVE', updateMove);
 
 }
 
