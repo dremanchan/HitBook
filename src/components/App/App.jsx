@@ -104,7 +104,7 @@ function App() {
               </ProtectedRoute>
 
               {/* Route to favorite page */}
-              <ProtectedRoute exact path="/favorite/">
+              <ProtectedRoute exact path="/favorite">
                 <FavoritePage />
               </ProtectedRoute>
 

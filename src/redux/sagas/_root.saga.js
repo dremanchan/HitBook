@@ -9,6 +9,7 @@ import favoriteSaga from './favorite.saga';
 import favoritePageSaga from './favoritePage.saga';
 import selectedCharacterSaga from './selectedcharacter.saga';
 
+
 // rootSaga is the primary saga.
 // It bundles up all of the other sagas so our project can use them.
 // This is imported in index.js as rootSaga

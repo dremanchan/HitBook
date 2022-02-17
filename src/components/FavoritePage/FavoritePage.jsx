@@ -30,15 +30,19 @@ function FavoritePage() {
     });
   }, [user.id]);
 
-  const nCharacterId = parseInt(characterId);
+  
+
   function deleteFavorite(char) {
     console.log('char is', char);
+    const sendId = char.characterId;
+    const sendUser = user.id;
+
     dispatch({
-      type: "DELETE_FAVORITE",
-      payload: {
-          charId: char.characterId,
-          user: user.id
-            }
+      type: "DELETE_FROM_FAVORITEPAGE",
+      payload: sendId,
+                sendUser
+          
+            
               
     });
   }
