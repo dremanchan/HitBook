@@ -110,6 +110,7 @@ function SmashCharacter() {
   }
 
 
+
   return (
     <>
       <h1 className="detailHeader">
@@ -133,6 +134,11 @@ function SmashCharacter() {
       <h4>Combos:</h4>
       <h5>{details.characterCombos}</h5>
       
+      <Link to="/addmove">
+        <Button onClick={updateCharacter}>
+          Add Move
+        </Button>
+      </Link>
 
       <TableContainer component={Paper}>
         <Table sx={{ maxWidth: 300 }} aria-label="simple table">

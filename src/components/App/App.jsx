@@ -26,6 +26,7 @@ import AdminPage from "../AdminPage/AdminPage";
 import SmashCharacter from "../SmashCharacter/SmashCharacter";
 import FavoritePage from "../FavoritePage/FavoritePage";
 import UpdateCharacter from '../UpdateCharacter/UpdateCharacter';
+import AddMove from '../AddMove/AddMove';
 
 import Container from "@mui/material/Container";
 
@@ -108,8 +109,14 @@ function App() {
                 <FavoritePage />
               </ProtectedRoute>
 
+              {/* Route to update character page */}
               <ProtectedRoute exact path="/updatecharacter/:id">
                 <UpdateCharacter />
+              </ProtectedRoute>
+
+              {/* Route to add move page */}
+              <ProtectedRoute exact path="/addmove">
+                <AddMove />
               </ProtectedRoute>
 
               <Route exact path="/login">
