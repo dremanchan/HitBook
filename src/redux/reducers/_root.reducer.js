@@ -7,6 +7,7 @@ import move from './move.reducer';
 import favorite from './favorite.reducer';
 import favoriteStuff from './favoritePage.reducer';
 import selectedCharacter from './selectedcharacter.reducer';
+import selectedMove from './selectedmove.reducer';
 
 // rootReducer is the primary reducer for our entire project
 // It bundles up all of the other reducers so our project can use them.
@@ -22,7 +23,8 @@ const rootReducer = combineReducers({
   move, // character moves
   favorite, // user's favorites
   favoriteStuff,
-  selectedCharacter
+  selectedCharacter, 
+  selectedMove,
 });
 
 export default rootReducer;

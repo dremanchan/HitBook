@@ -26,33 +26,33 @@ function SmashCharacter() {
   const user = useSelector((store) => store.user);
   // Accessing the favorites reducer
   const favorites = useSelector((store) => store.favorite);
-  // UseState for edit form
-  const [newInput, setNewInput] = useState("");
-  const [newFrameData, setNewFrameData] = useState("");
+
 
   // Used to make unique page ID's for each character
   const params = useParams();
   const characterId = params.id;
-  console.log("user.id is", user.id);
 
   // Renders the details and moves on page load
   useEffect(() => {
     dispatch({
       type: "FETCH_DETAILS",
       payload: characterId,
-    });
+    }),
 
     dispatch({
       type: "FETCH_MOVES",
       payload: characterId,
-    });
-  }, [characterId]);
-
-  useEffect(() => {
+    }),
+     
     dispatch({
       type: "FETCH_FAVORITES",
-    });
-  }, []);
+      payload: characterId,
+    })
+
+    
+  }, [params.id,])
+  
+ 
 
   // favorites function
   function addFavorite() {
@@ -84,22 +84,44 @@ function SmashCharacter() {
     });
   }
 
-  // Renders Edit text field
-  let editClicked = true;
-  function handleEdit() {
-    let editClicked = true;
-    console.log("editClicked is", editClicked);
+ 
+  function handleEdit(move) {
+    const moveId = move.id;
+    dispatch({
+      type:'SET_SELECTED_MOVE',
+      payload: moveId
+    })
   }
 
-  function editMove() {
-    editClicked = false;
-    console.log('editClicked is', editClicked);
-  }
+   // Renders Edit text field
+  //  let editClicked = true;
+  // function editMove() {
+  //   editClicked = false;
+  //   console.log('editClicked is', editClicked);
+  // }
 
   // placeholder to delete moves
-  function deleteMove() {
-    console.log("move deleted");
+  function deleteMove(move) {
+    console.log("move is", move);
+    const moveId = move.id;
+    console.log('moveId is', move.id);
+    const char = move.characterId;
+    console.log('move.characterId', move.characterId);
+    dispatch({
+      type: 'DELETE_SET_MOVE',
+      payload: {
+        id: moveId,
+        characterId: char
+      }
+    })
+    dispatch({
+      type: 'FETCH_MOVES',
+      payload: req.params.id
+
+    });
   }
+
+
 
   return (
     <>
@@ -123,6 +145,12 @@ function SmashCharacter() {
       <h5>{details.characterStrategy}</h5>
       <h4>Combos:</h4>
       <h5>{details.characterCombos}</h5>
+      
+      <Link to="/addmove">
+        <Button onClick={updateCharacter}>
+          Add Move
+        </Button>
+      </Link>
 
       <TableContainer component={Paper}>
         <Table sx={{ maxWidth: 300 }} aria-label="simple table">
@@ -141,7 +169,7 @@ function SmashCharacter() {
           <TableBody>
             {moves?.map((move) => (
               <TableRow
-                key={move.moveInput}
+                key={move.id}
                 sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
               >
                 <TableCell component="th" scope="row">
@@ -153,12 +181,14 @@ function SmashCharacter() {
                   <>
                     {/* Edit move button code */}
                     <TableCell align="right">
-                      <Button onClick={handleEdit}>Edit</Button>
+                      <Link to="/updatemove">
+                        <Button onClick={(evt) => handleEdit(move)}>Edit</Button>
+                      </Link>
                     </TableCell>
 
                     {/* Delete move button here */}
                     <TableCell align="right">
-                      <Button onClick={deleteMove}>Delete</Button>
+                      <Button onClick={(evt) => deleteMove(move)}>Delete</Button>
                     </TableCell>
                   </>
                 )}
@@ -168,7 +198,7 @@ function SmashCharacter() {
         </Table>
       </TableContainer>
 
-      {/* Conditional Rendering Move Change forms */}
+      {/* Conditional Rendering Move Change forms
       {editClicked ? (
         <div>
           <form onSubmit={editMove}>
@@ -188,9 +218,9 @@ function SmashCharacter() {
           </form>
         </div>
       ) : (
-        <div></div>
-      )}
-      <Button onClick={editMove}>Render</Button>
+        <div></div> */}
+      
+      
     </>
   );
 }
