@@ -132,6 +132,7 @@ function SmashCharacter() {
       <h5>{details.characterStrategy}</h5>
       <h4>Combos:</h4>
       <h5>{details.characterCombos}</h5>
+      
 
       <TableContainer component={Paper}>
         <Table sx={{ maxWidth: 300 }} aria-label="simple table">
@@ -199,7 +200,7 @@ function SmashCharacter() {
       ) : (
         <div></div>
       )}
-      <Button onClick={editMove}>Render</Button>
+      
     </>
   );
 }
