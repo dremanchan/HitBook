@@ -6,6 +6,7 @@ const detailsRouter = require('./routes/details.router');
 const moveRouter = require('./routes/move.router');
 const favoriteRouter = require('./routes/favorite.router');
 const favoritePageRouter = require('./routes/favorite.page.router');
+const favoriteDeleteRouter = require('./routes/favorite.delete.js');
 
 const app = express();
 
@@ -32,7 +33,8 @@ app.use('/api/character', characterRouter);
 app.use('/api/details', detailsRouter)
 app.use('/api/move/', moveRouter)
 app.use('/api/favorite/', favoriteRouter);
-app.use('/api/favorite/', favoritePageRouter);
+app.use('/api/favoritepage/', favoritePageRouter);
+app.use('/api/favorite/delete/', favoriteDeleteRouter);
 
 // Serve static files
 app.use(express.static('build'));

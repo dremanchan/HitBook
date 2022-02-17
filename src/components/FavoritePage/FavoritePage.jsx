@@ -1,6 +1,7 @@
 import { React, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
+import "./FavoritePage.css";
 import Container from "@mui/material/Container";
 import Button from "@mui/material/Button";
 
@@ -9,8 +10,8 @@ function FavoritePage() {
   const details = useSelector((store) => store.details);
   const user = useSelector((store) => store.user);
   const favorite = useSelector((store) => store.favorite);
+  console.log("favorite", favorite);
   const favoriteStuff = useSelector((store) => store.favoriteStuff);
-  console.log("favoritePage stuff", favoriteStuff);
   const character = useSelector((store) => store.character);
   console.log("character", character);
   const params = useParams();
@@ -21,7 +22,6 @@ function FavoritePage() {
   useEffect(() => {
     dispatch({
       type: "FETCH_FAVORITE_PAGE",
-      payload: user.id,
     });
 
     dispatch({
@@ -29,11 +29,15 @@ function FavoritePage() {
     });
   }, [user.id]);
 
-  const nCharacterId = parseInt(characterId);
-  function deleteFavorite() {
+  function deleteFavorite(char) {
+    console.log("char is", char);
+    const sendId = char.characterId;
+    const sendUser = user.id;
+
     dispatch({
-      type: "DELETE_FAVORITE",
-      payload: currentUser,
+      type: "DELETE_FROM_FAVORITEPAGE",
+      payload: sendId,
+      sendUser,
     });
   }
 
@@ -41,16 +45,18 @@ function FavoritePage() {
     <>
       <h1>Favorites</h1>
 
-      {character.map((char) => {
+      {favoriteStuff.map((char) => {
         return (
           <div key={char.id}>
             <>
               <h3>
                 {char.name}
-                <Button onClick={deleteFavorite}>Remove Favorite</Button>
+                <Button onClick={(evt) => deleteFavorite(char)}>
+                  Remove Favorite
+                </Button>
               </h3>
 
-              <img src={char.image} />
+              <img className="favImg" src={char.image} />
             </>
           </div>
         );

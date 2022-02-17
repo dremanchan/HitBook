@@ -13,7 +13,7 @@ CREATE TABLE "user" (
 -- This table holds the character information
 CREATE TABLE "character" (
     "id" SERIAL PRIMARY KEY,
-    "name" VARCHAR (100),
+    "name" VARCHAR (100) UNIQUE,
     "gameId" INTEGER,
     "strategy" VARCHAR (4096),
     "combos" VARCHAR (2048),
@@ -27,7 +27,7 @@ VALUES  (3, 'Captain Falcon', 'Hit and Run', 'Downthrow -> Knee', '/images/cfalc
 -- This table is for games
 CREATE TABLE "game" (
     "id" SERIAL PRIMARY KEY,
-    "name" VARCHAR (80),
+    "name" VARCHAR (80) UNIQUE,
 );
 
 -- Starter Game Input
@@ -56,7 +56,7 @@ VALUES
 CREATE TABLE "favorite" (
     "id" SERIAL PRIMARY KEY,
     "user_id" INTEGER,
-    "characterId" INTEGER
+    "characterId" INTEGER UNIQUE
 );
 
 

@@ -1,10 +1,12 @@
 import { useState, React } from "react";
 import "./AdminPage.css";
 import { useDispatch } from "react-redux";
+import { Link, useHistory } from 'react-router-dom';
 
 
 function AdminPage() {
   const dispatch = useDispatch();
+  const history = useHistory();
   const [characterName, setCharacterName] = useState("");
   const [gameId, setGameId] = useState(1);
   const [characterStrategy, setCharacterStrategy] = useState("");
@@ -25,6 +27,8 @@ function AdminPage() {
         thumbnail: characterThumb,
       },
     });
+    // sends user to character select page to see new character
+    history.push('/smashSelect');
   }
 
   return (
@@ -80,8 +84,9 @@ function AdminPage() {
             value={characterThumb}
             onChange={(evt) => setCharacterThumb(evt.target.value)}
           />
-
-          <button onClick={addCharacter}> Submit </button>
+         
+            <button onClick={addCharacter}> Submit </button>
+          
         </form>
       </div>
     </>

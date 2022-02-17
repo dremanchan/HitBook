@@ -1,4 +1,4 @@
-import { useEffect, React } from "react";
+import { useEffect, useState, React } from "react";
 import { Link, useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import "./SmashCharacter.css";
@@ -26,8 +26,10 @@ function SmashCharacter() {
   const user = useSelector((store) => store.user);
   // Accessing the favorites reducer
   const favorites = useSelector((store) => store.favorite);
-  console.log("favorites", favorites.user_Id);
-  
+  // UseState for edit form
+  const [newInput, setNewInput] = useState("");
+  const [newFrameData, setNewFrameData] = useState("");
+
   // Used to make unique page ID's for each character
   const params = useParams();
   const characterId = params.id;
@@ -50,7 +52,6 @@ function SmashCharacter() {
     dispatch({
       type: "FETCH_FAVORITES",
     });
-
   }, []);
 
   // favorites function
@@ -75,9 +76,24 @@ function SmashCharacter() {
     });
   }
 
-  // placeholder for edit button
+  function updateCharacter() {
+    console.log("Selected character #", characterId);
+    dispatch({
+      type: "SET_SELECTED_CHARACTER",
+      payload: characterId,
+    });
+  }
+
+  // Renders Edit text field
+  let editClicked = true;
+  function handleEdit() {
+    let editClicked = true;
+    console.log("editClicked is", editClicked);
+  }
+
   function editMove() {
-    console.log("editMove here");
+    editClicked = false;
+    console.log('editClicked is', editClicked);
   }
 
   // placeholder to delete moves
@@ -87,20 +103,21 @@ function SmashCharacter() {
 
   return (
     <>
-      <h1 className="detailHeader">Character Info</h1>
+      <h1 className="detailHeader">
+        Character Info
+        <Link to={`/updatecharacter/${characterId}`}>
+          <Button onClick={updateCharacter}>Update</Button>
+        </Link>
+      </h1>
       <h2>
         {details.characterName}
 
         <Button onClick={addFavorite}>Add Favorite</Button>
 
         <Button onClick={deleteFavorite}>Remove Favorite</Button>
-
-        {/* <Button onClick={deleteFavorite}>
-          <StarIcon />
-        </Button> */}
       </h2>
       <Link to="/smashSelect">
-        <img src={details.characterImg} />
+        <img className="characterPic" src={details.characterImg} />
       </Link>
       <h4>Strategy:</h4>
       <h5>{details.characterStrategy}</h5>
@@ -136,7 +153,7 @@ function SmashCharacter() {
                   <>
                     {/* Edit move button code */}
                     <TableCell align="right">
-                      <Button onClick={editMove}>Edit</Button>
+                      <Button onClick={handleEdit}>Edit</Button>
                     </TableCell>
 
                     {/* Delete move button here */}
@@ -150,6 +167,30 @@ function SmashCharacter() {
           </TableBody>
         </Table>
       </TableContainer>
+
+      {/* Conditional Rendering Move Change forms */}
+      {editClicked ? (
+        <div>
+          <form onSubmit={editMove}>
+            <p>New Input</p>
+            <input
+              type="text"
+              value={newInput}
+              onChange={(evt) => setNewInput(evt.target.value)}
+            />
+            <p>New Frame Data</p>
+            <input
+              type="text"
+              value={newFrameData}
+              onChange={(evt) => setNewFrameData(evt.target.value)}
+            />
+            <Button onClick={editMove}>Submit</Button>
+          </form>
+        </div>
+      ) : (
+        <div></div>
+      )}
+      <Button onClick={editMove}>Render</Button>
     </>
   );
 }

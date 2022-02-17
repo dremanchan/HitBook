@@ -5,9 +5,7 @@ const {
   rejectUnauthenticated,
 } = require("../modules/authentication-middleware");
 
-/**
- * GET route template
- */
+// Get all characters
 router.get("/", rejectUnauthenticated, (req, res) => {
   const sqlQuery = `
     SELECT * from "character" ORDER BY "name" DESC;
@@ -20,6 +18,25 @@ router.get("/", rejectUnauthenticated, (req, res) => {
     })
     .catch((err) => {
       console.error("GET character failed", err);
+      res.sendStatus(500);
+    });
+});
+
+// Get selected character
+
+router.get("/:id", rejectUnauthenticated, (req, res) => {
+  const sqlText = `
+    SELECT * FROM character
+    WHERE "id" = $1
+    ;`;
+  const queryParams = [req.params.id];
+  pool
+    .query(sqlText, queryParams)
+    .then((result) => {
+      res.sendStatus(201);
+    })
+    .catch((error) => {
+      console.error(`GET selected char failed`, error);
       res.sendStatus(500);
     });
 });
@@ -49,16 +66,16 @@ router.post("/", rejectUnauthenticated, (req, res) => {
 });
 
 // Update characters
-router.put(":id", rejectUnauthenticated, (req, res) => {
+router.put("/:id", rejectUnauthenticated, (req, res) => {
   const sqlText = `
     UPDATE "character"
     SET 
       "name" = $1,
       "strategy" = $2,
       "combos" = $3,
-      "image" = $4,
-    WHERE "id" = $5
-'`;
+      "image" = $4
+    WHERE "id" = $5;
+`;
   const queryParams = [
     req.body.name,
     req.body.strategy,
