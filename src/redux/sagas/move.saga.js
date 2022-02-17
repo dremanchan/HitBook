@@ -12,8 +12,21 @@ function* fetchMoves(action) {
     }
 }
 
+// Delete moves saga
+function* deleteMove(action) {
+    try {
+        const move = yield axios.delete(`/api/move/${action.payload}`);
+
+        yield put({ type: 'SET_MOVES' })
+    }
+    catch (err) {
+        console.error('deleteMove failed', err);
+    }
+}
+
 function* moveSaga() {
     yield takeEvery('FETCH_MOVES', fetchMoves);
+    yield takeEvery('DELETE_MOVE', deleteMove);
 }
 
 export default moveSaga;
