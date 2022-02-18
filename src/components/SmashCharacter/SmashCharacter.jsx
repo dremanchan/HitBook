@@ -47,6 +47,7 @@ function SmashCharacter() {
       });
   }, [characterId]);
 
+
   // favorites function
   function addFavorite() {
     dispatch({
@@ -58,8 +59,7 @@ function SmashCharacter() {
     });
   }
 
-  // Turning the string of req.params into a number to send
-  const nCharacterId = parseInt(characterId);
+  const nCharacterId = parseInt(characterId)
   const currentUser = user.id;
   function deleteFavorite() {
     dispatch({
