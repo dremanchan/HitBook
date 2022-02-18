@@ -45,7 +45,7 @@ function App() {
   }, [dispatch]);
 
   return (
-    <Container maxWidth="m">
+    
       <GamepadsProvider>
         <Router>
           <div>
@@ -167,7 +167,7 @@ function App() {
           </div>
         </Router>
       </GamepadsProvider>
-    </Container>
+   
   );
 }
 

@@ -57,6 +57,7 @@ function SmashCharacter() {
         characterId,
       },
     });
+    toggleFunc();
   }
 
   const nCharacterId = parseInt(characterId)
@@ -67,6 +68,7 @@ function SmashCharacter() {
       payload: nCharacterId,
       currentUser,
     });
+    toggleFunc();
   }
 
   function updateCharacter() {
@@ -106,6 +108,17 @@ function SmashCharacter() {
     });
   }
 
+ const [toggle, setToggle] = useState(false);
+
+ 
+ function toggleFunc() {
+   setToggle(!toggle)
+ }
+
+ console.log('toggle', toggle);
+
+
+
   return (
     <>
       <h1 className="detailHeader">
@@ -119,9 +132,11 @@ function SmashCharacter() {
       <h2>
         {details.characterName}
 
-        <Button onClick={addFavorite}>Add Favorite</Button>
-
-        <Button onClick={deleteFavorite}>Remove Favorite</Button>
+          {/* Conditional Rendering if the character is favorited */}
+        {toggle ? <Button  onClick={deleteFavorite}> <StarIcon /> </Button> :
+                  <Button onClick={addFavorite}> <StarBorderIcon /> </Button>}
+        
+        
       </h2>
       <Link to="/smashSelect">
         <img className="characterPic" src={details.characterImg} />
@@ -187,5 +202,7 @@ function SmashCharacter() {
     </>
   );
 }
+
+
 
 export default SmashCharacter;
