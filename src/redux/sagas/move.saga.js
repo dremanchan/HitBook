@@ -2,6 +2,7 @@ import axios from 'axios'
 import { put, takeEvery } from 'redux-saga/effects';
 // GET moves
 function* fetchMoves(action) {
+    console.log('action.payload is', action.payload);
     try {
         const move = yield axios.get(`/api/move/${action.payload}`);
         console.log('GET move results', move.data);

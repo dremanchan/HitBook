@@ -51,8 +51,8 @@ function App() {
           <div>
             <Nav />
             <Switch>
-              {/* Visiting localhost:3000 will redirect to localhost:3000/home */}
-              <Redirect exact from="/" to="/home" />
+              {/* Visiting localhost:3000 will redirect to localhost:3000/instructions */}
+              <Redirect exact from="/" to="/instructions" />
 
               {/* Visiting localhost:3000/about will show the about page. */}
               <Route
@@ -147,7 +147,7 @@ function App() {
                 )}
               </Route>
 
-              <Route exact path="/home">
+              {/* <Route exact path="/home">
                 {user.id ? (
                   // If the user is already logged in,
                   // redirect them to the /instructions page
@@ -156,7 +156,7 @@ function App() {
                   // Otherwise, show the Landing page
                   <LandingPage />
                 )}
-              </Route>
+              </Route> */}
 
               {/* If none of the other routes matched, we will show a 404. */}
               <Route>

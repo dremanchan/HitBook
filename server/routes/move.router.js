@@ -83,7 +83,6 @@ router.delete("/:id/:characterId", rejectUnauthenticated, (req, res) => {
   DELETE FROM "move"
   WHERE "move"."id" = $1 AND "move"."characterId" = $2
   ;`;
-  // This isn't working
   const queryParams = [
     req.params.id,
     req.params.characterId

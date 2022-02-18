@@ -36,16 +36,16 @@ function SmashCharacter() {
     dispatch({
       type: "FETCH_DETAILS",
       payload: characterId,
+    });
+    dispatch({
+      type: "FETCH_MOVES",
+      payload: characterId,
     }),
-      dispatch({
-        type: "FETCH_MOVES",
-        payload: characterId,
-      }),
       dispatch({
         type: "FETCH_FAVORITES",
         payload: characterId,
       });
-  }, [params.id]);
+  }, [characterId]);
 
   // favorites function
   function addFavorite() {
@@ -85,14 +85,8 @@ function SmashCharacter() {
     });
   }
 
-  // Renders Edit text field
-  //  let editClicked = true;
-  // function editMove() {
-  //   editClicked = false;
-  //   console.log('editClicked is', editClicked);
-  // }
 
-  // placeholder to delete moves
+  // Delete Move Function
   function deleteMove(move) {
     console.log("move is", move);
     const moveId = move.id;
@@ -108,7 +102,7 @@ function SmashCharacter() {
     });
     dispatch({
       type: "FETCH_MOVES",
-      payload: req.params.id,
+      payload: characterId,
     });
   }
 
@@ -190,28 +184,6 @@ function SmashCharacter() {
           </TableBody>
         </Table>
       </TableContainer>
-
-      {/* Conditional Rendering Move Change forms
-      {editClicked ? (
-        <div>
-          <form onSubmit={editMove}>
-            <p>New Input</p>
-            <input
-              type="text"
-              value={newInput}
-              onChange={(evt) => setNewInput(evt.target.value)}
-            />
-            <p>New Frame Data</p>
-            <input
-              type="text"
-              value={newFrameData}
-              onChange={(evt) => setNewFrameData(evt.target.value)}
-            />
-            <Button onClick={editMove}>Submit</Button>
-          </form>
-        </div>
-      ) : (
-        <div></div> */}
     </>
   );
 }

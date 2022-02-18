@@ -55,8 +55,9 @@ function FavoritePage() {
                   Remove Favorite
                 </Button>
               </h3>
-
-              <img className="favImg" src={char.image} />
+              <Link to={`/smashcharacter/${char.characterId}`}>
+                <img className="favImg" src={char.image} />
+              </Link>
             </>
           </div>
         );
