@@ -11,11 +11,18 @@ import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import Container from "@mui/material/Container";
 import Button from "@mui/material/Button";
+import { makeStyles, ThemeProvider, createMuiTheme } from '@mui/material/core/styles';
 
 // Icons from mui
 import StarIcon from "@mui/icons-material/Star";
 import StarBorderIcon from "@mui/icons-material/StarBorder";
 
+const useStyles = makeStyles({
+  root: {
+    background: 'linear-gradient(45deg, #FE68BB , #FF8E53)',
+    
+  }
+})
 function SmashCharacter() {
   const dispatch = useDispatch();
   // Access the details reducer
@@ -26,7 +33,8 @@ function SmashCharacter() {
   const user = useSelector((store) => store.user);
   // Accessing the favorites reducer
   const favorites = useSelector((store) => store.favorite);
-
+  console.log('favorites', favorites);
+console.log('user.id is', user.id);
   // Used to make unique page ID's for each character
   const params = useParams();
   const characterId = params.id;
@@ -57,7 +65,6 @@ function SmashCharacter() {
         characterId,
       },
     });
-    toggleFunc();
   }
 
   const nCharacterId = parseInt(characterId)
@@ -68,7 +75,6 @@ function SmashCharacter() {
       payload: nCharacterId,
       currentUser,
     });
-    toggleFunc();
   }
 
   function updateCharacter() {
@@ -131,13 +137,7 @@ function SmashCharacter() {
       </h1>
       <h2>
         {details.characterName}
-
-          {/* Conditional Rendering if the character is favorited */}
-        {toggle ? <Button  onClick={deleteFavorite}> <StarIcon /> </Button> :
-                  <Button onClick={addFavorite}> <StarBorderIcon /> </Button>}
-        
-        
-      </h2>
+        </h2>
       <Link to="/smashSelect">
         <img className="characterPic" src={details.characterImg} />
       </Link>
