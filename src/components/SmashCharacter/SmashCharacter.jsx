@@ -102,7 +102,7 @@ function SmashCharacter() {
     });
     dispatch({
       type: "FETCH_MOVES",
-      payload: characterId,
+      payload: params.id,
     });
   }
 
