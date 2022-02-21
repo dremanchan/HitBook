@@ -39,7 +39,7 @@ function* deleteMove(action) {
     try {
         const move = yield axios.delete(`/api/move/${action.payload.id}/${action.payload.characterId}`);
 
-        yield put({ type: 'FETCH_MOVES' })
+        yield put({ type: 'FETCH_MOVES', payload: action.payload.characterId })
     }
     catch (err) {
         console.error('deleteMove failed', err);

@@ -45,6 +45,10 @@ function FavoritePage() {
     <>
       <h1>Favorites</h1>
 
+      <Link to="/smashselect">
+        <Button variant="contained">Character Select</Button>
+      </Link>
+
       {favoriteStuff.map((char) => {
         return (
           <div key={char.id}>

@@ -29,7 +29,10 @@ import UpdateCharacter from '../UpdateCharacter/UpdateCharacter';
 import AddMove from '../AddMove/AddMove';
 import UpdateMove from '../UpdateMove/UpdateMove';
 
+
 import Container from "@mui/material/Container";
+import Paper from '@mui/material/Paper';
+import Grid from '@mui/material/Grid'
 
 import "./App.css";
 
@@ -45,7 +48,11 @@ function App() {
   }, [dispatch]);
 
   return (
+
     
+
+    
+    <Container maxWidth="xs">
       <GamepadsProvider>
         <Router>
           <div>
@@ -167,6 +174,7 @@ function App() {
           </div>
         </Router>
       </GamepadsProvider>
+      </Container>
    
   );
 }

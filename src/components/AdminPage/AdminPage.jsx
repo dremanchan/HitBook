@@ -7,12 +7,12 @@ import { Link, useHistory } from 'react-router-dom';
 function AdminPage() {
   const dispatch = useDispatch();
   const history = useHistory();
-  const [characterName, setCharacterName] = useState("");
+  const [characterName, setCharacterName] = useState("Marth");
   const [gameId, setGameId] = useState(1);
-  const [characterStrategy, setCharacterStrategy] = useState("");
-  const [characterCombos, setCharacterCombos] = useState("");
-  const [characterImg, setCharacterImg] = useState("");
-  const [characterThumb, setCharacterThumb] = useState("");
+  const [characterStrategy, setCharacterStrategy] = useState("Create space with movement and control the enemy with long range.");
+  const [characterCombos, setCharacterCombos] = useState("Down Throw -> B Air, Up Tilt, Up Tilt, Up Air");
+  const [characterImg, setCharacterImg] = useState("/images/marth.png");
+  const [characterThumb, setCharacterThumb] = useState("/images/marth.gif");
 
   function addCharacter(evt) {
     evt.preventDefault();
@@ -37,6 +37,7 @@ function AdminPage() {
 
       <div>
           <h3>Add Character Form</h3>
+          <p>Character Name:</p>
         <form onSubmit={addCharacter}>
           <input
             type="text"
@@ -45,6 +46,7 @@ function AdminPage() {
             value={characterName}
             onChange={(evt) => setCharacterName(evt.target.value)}
           />
+          <p>Game ID:</p>
           <input
             type="number"
             placeholder="Game ID#"
@@ -52,7 +54,8 @@ function AdminPage() {
             value={gameId}
             onChange={(evt) => setGameId(evt.target.value)}
           />
-
+          
+          <p>Strategy:</p>
           <input
             type="text"
             placeholder="Strategy"
@@ -60,7 +63,7 @@ function AdminPage() {
             value={characterStrategy}
             onChange={(evt) => setCharacterStrategy(evt.target.value)}
           />
-
+          <p>Combos:</p>
           <input
             type="text"
             placeholder="Combos"
@@ -68,7 +71,7 @@ function AdminPage() {
             value={characterCombos}
             onChange={(evt) => setCharacterCombos(evt.target.value)}
           />
-
+          <p>Image URL:</p>
           <input
             type="text"
             placeholder="Character Img Url"
@@ -76,7 +79,7 @@ function AdminPage() {
             value={characterImg}
             onChange={(evt) => setCharacterImg(evt.target.value)}
           />
-
+          <p>Thumbnail:</p>
           <input
             type="text"
             placeholder="Thumbnail URL"

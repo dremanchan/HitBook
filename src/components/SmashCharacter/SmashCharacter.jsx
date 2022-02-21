@@ -11,6 +11,7 @@ import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import Container from "@mui/material/Container";
 import Button from "@mui/material/Button";
+import Typography from '@mui/material/Typography';
 
 // Icons from mui
 import StarIcon from "@mui/icons-material/Star";
@@ -39,7 +40,7 @@ function SmashCharacter() {
     });
     dispatch({
       type: "FETCH_MOVES",
-      payload: characterId,
+      payload: params.id,
     }),
       dispatch({
         type: "FETCH_FAVORITES",
@@ -95,6 +96,7 @@ function SmashCharacter() {
     console.log("moveId is", move.id);
     const char = move.characterId;
     console.log("move.characterId", move.characterId);
+    console.log('params.id is', params.id);
     dispatch({
       type: "DELETE_SET_MOVE",
       payload: {
@@ -108,19 +110,17 @@ function SmashCharacter() {
     });
   }
 
- const [toggle, setToggle] = useState(false);
 
- 
- function toggleFunc() {
+ // Toggles the favorite button
+ const [toggle, setToggle] = useState(false);
+  function toggleFunc() {
    setToggle(!toggle)
  }
-
- console.log('toggle', toggle);
-
 
 
   return (
     <>
+    <Container maxWidth="xs">
       <h1 className="detailHeader">
         Character Info
         {user.admin === true && (
@@ -199,6 +199,7 @@ function SmashCharacter() {
           </TableBody>
         </Table>
       </TableContainer>
+      </Container>
     </>
   );
 }
