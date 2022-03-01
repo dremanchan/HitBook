@@ -1,7 +1,7 @@
 import React from 'react';
 import './InstructionsPage.css'
 import { Link, } from 'react-router-dom';
-
+import Button from '@mui/material/Button';
 // This is one of our simplest components
 // It doesn't have local state
 // It doesn't dispatch any redux actions or display any part of redux state
@@ -25,7 +25,7 @@ function InstructionsPage() {
     </div>
     <div className="buttonDiv">
     <Link to="gameselect">
-        <button className="gameBtn"> Game Select</button>
+        <Button className="gameBtn" variant="contained"> Game Select</Button>
       </Link>
       </div>
     </>

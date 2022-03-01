@@ -9,7 +9,6 @@ function UpdateMove() {
   const params = useParams();
   const move = useSelector((store) => store.selectedMove);
   const char = useSelector((store) => store.selectedCharacter);
-  console.log('char is', char);
   const [input, setInput] = useState("");
   const [frames, setFrames] = useState("");
 

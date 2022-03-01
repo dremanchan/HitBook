@@ -9,7 +9,6 @@ function AddMove() {
   const [frames, setFrames] = useState("");
   const dispatch = useDispatch();
   const char = useSelector((store) => store.selectedCharacter);
-  console.log("selected character is", char);
 
   function handleSubmit() {
     // Sends new move to the server

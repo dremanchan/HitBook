@@ -11,6 +11,7 @@ import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import Container from "@mui/material/Container";
 import Button from "@mui/material/Button";
+import Typography from '@mui/material/Typography';
 
 // Icons from mui
 import StarIcon from "@mui/icons-material/Star";
@@ -36,16 +37,17 @@ function SmashCharacter() {
     dispatch({
       type: "FETCH_DETAILS",
       payload: characterId,
+    });
+    dispatch({
+      type: "FETCH_MOVES",
+      payload: params.id,
     }),
-      dispatch({
-        type: "FETCH_MOVES",
-        payload: characterId,
-      }),
       dispatch({
         type: "FETCH_FAVORITES",
         payload: characterId,
       });
-  }, [params.id]);
+  }, [characterId]);
+
 
   // favorites function
   function addFavorite() {
@@ -56,10 +58,10 @@ function SmashCharacter() {
         characterId,
       },
     });
+    toggleFunc();
   }
 
-  // Turning the string of req.params into a number to send
-  const nCharacterId = parseInt(characterId);
+  const nCharacterId = parseInt(characterId)
   const currentUser = user.id;
   function deleteFavorite() {
     dispatch({
@@ -67,6 +69,7 @@ function SmashCharacter() {
       payload: nCharacterId,
       currentUser,
     });
+    toggleFunc();
   }
 
   function updateCharacter() {
@@ -85,20 +88,15 @@ function SmashCharacter() {
     });
   }
 
-  // Renders Edit text field
-  //  let editClicked = true;
-  // function editMove() {
-  //   editClicked = false;
-  //   console.log('editClicked is', editClicked);
-  // }
 
-  // placeholder to delete moves
+  // Delete Move Function
   function deleteMove(move) {
     console.log("move is", move);
     const moveId = move.id;
     console.log("moveId is", move.id);
     const char = move.characterId;
     console.log("move.characterId", move.characterId);
+    console.log('params.id is', params.id);
     dispatch({
       type: "DELETE_SET_MOVE",
       payload: {
@@ -108,12 +106,21 @@ function SmashCharacter() {
     });
     dispatch({
       type: "FETCH_MOVES",
-      payload: req.params.id,
+      payload: params.id,
     });
   }
 
+
+ // Toggles the favorite button
+ const [toggle, setToggle] = useState(false);
+  function toggleFunc() {
+   setToggle(!toggle)
+ }
+
+
   return (
     <>
+    <Container maxWidth="xs">
       <h1 className="detailHeader">
         Character Info
         {user.admin === true && (
@@ -125,9 +132,11 @@ function SmashCharacter() {
       <h2>
         {details.characterName}
 
-        <Button onClick={addFavorite}>Add Favorite</Button>
-
-        <Button onClick={deleteFavorite}>Remove Favorite</Button>
+          {/* Conditional Rendering if the character is favorited */}
+        {toggle ? <Button  onClick={deleteFavorite}> <StarIcon /> </Button> :
+                  <Button onClick={addFavorite}> <StarBorderIcon /> </Button>}
+        
+        
       </h2>
       <Link to="/smashSelect">
         <img className="characterPic" src={details.characterImg} />
@@ -190,30 +199,11 @@ function SmashCharacter() {
           </TableBody>
         </Table>
       </TableContainer>
-
-      {/* Conditional Rendering Move Change forms
-      {editClicked ? (
-        <div>
-          <form onSubmit={editMove}>
-            <p>New Input</p>
-            <input
-              type="text"
-              value={newInput}
-              onChange={(evt) => setNewInput(evt.target.value)}
-            />
-            <p>New Frame Data</p>
-            <input
-              type="text"
-              value={newFrameData}
-              onChange={(evt) => setNewFrameData(evt.target.value)}
-            />
-            <Button onClick={editMove}>Submit</Button>
-          </form>
-        </div>
-      ) : (
-        <div></div> */}
+      </Container>
     </>
   );
 }
+
+
 
 export default SmashCharacter;

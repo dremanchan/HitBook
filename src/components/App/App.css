@@ -7,12 +7,16 @@ body,
 body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   margin: 0px;
+  align-content: center;
+  color: Black;
 }
 
 img {
   display: inline-block;
   max-width: 100%;
 }
+
+
 
 /* --------------------------------------------------------------------------------
 Container

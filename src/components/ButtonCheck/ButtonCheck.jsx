@@ -22,7 +22,8 @@ export default function ButtonCheck() {
 
   return (
     <div className="Gamepads">
-      <h1>Gamepads</h1>
+      <h1>Is your controller working?</h1>
+      <h2>Check those buttons</h2>
       {gamepadDisplay}
     </div>
   );
