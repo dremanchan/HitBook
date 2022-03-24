@@ -7,12 +7,16 @@ body,
 body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   margin: 0px;
+  align-content: center;
+  color: Black;
 }
 
 img {
   display: inline-block;
   max-width: 100%;
 }
+
+
 
 /* --------------------------------------------------------------------------------
 Container
@@ -29,10 +33,10 @@ Button
 .btn {
   display: inline-block;
   padding: 10px 20px;
-  border-color: #014041;
+  border-color: #0d0f0f;
   border-width: 1px 1px 3px;
   border-radius: 4px;
-  background-color: #00acb0;
+  background-color: #0006b0;
   color: #f8f8f8;
   font-size: 1.1rem;
   outline: 0;

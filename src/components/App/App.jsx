@@ -29,7 +29,10 @@ import UpdateCharacter from '../UpdateCharacter/UpdateCharacter';
 import AddMove from '../AddMove/AddMove';
 import UpdateMove from '../UpdateMove/UpdateMove';
 
+
 import Container from "@mui/material/Container";
+import Paper from '@mui/material/Paper';
+import Grid from '@mui/material/Grid'
 
 import "./App.css";
 
@@ -45,14 +48,18 @@ function App() {
   }, [dispatch]);
 
   return (
-    <Container maxWidth="m">
+
+    
+
+    
+    <Container maxWidth="xs">
       <GamepadsProvider>
         <Router>
           <div>
             <Nav />
             <Switch>
-              {/* Visiting localhost:3000 will redirect to localhost:3000/home */}
-              <Redirect exact from="/" to="/home" />
+              {/* Visiting localhost:3000 will redirect to localhost:3000/instructions */}
+              <Redirect exact from="/" to="/instructions" />
 
               {/* Visiting localhost:3000/about will show the about page. */}
               <Route
@@ -147,7 +154,7 @@ function App() {
                 )}
               </Route>
 
-              <Route exact path="/home">
+              {/* <Route exact path="/home">
                 {user.id ? (
                   // If the user is already logged in,
                   // redirect them to the /instructions page
@@ -156,7 +163,7 @@ function App() {
                   // Otherwise, show the Landing page
                   <LandingPage />
                 )}
-              </Route>
+              </Route> */}
 
               {/* If none of the other routes matched, we will show a 404. */}
               <Route>
@@ -167,7 +174,8 @@ function App() {
           </div>
         </Router>
       </GamepadsProvider>
-    </Container>
+      </Container>
+   
   );
 }
 
