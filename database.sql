@@ -22,7 +22,18 @@ CREATE TABLE "character" (
 
 -- Character input to character table
 INSERT INTO "character" ("gameId", "name", "strategy", "combos", "image", "thumbnail")
-VALUES  (3, 'Captain Falcon', 'Hit and Run', 'Downthrow -> Knee', '/images/cfalcon.jpeg', '/images/captain-falcon-ramen.gif');
+VALUES  (1, 'Captain Falcon', 'Hit and Run', 'Down Throw -> Up Air -> Up Air', '/images/falcon.png', '/images/captain-falcon-ramen.');
+
+INSERT INTO "character" ("gameId", "name", "strategy", "combos", "image", "thumbnail")
+VALUES  (1, 'Ganondorf', 'Control space with large normals and pressure the enemy with aerials', 'Down Throw -> Down B', '/images/ganon.png', '/images/ganon.gif');
+
+INSERT INTO "character" ("gameId", "name", "strategy", "combos", "image", "thumbnail")
+VALUES  (1, 'Ike', 'Knock opponents into the air with grabs and tilts and finish with smash attacks and aerials', 'Up Tilt -> Up Air -> Forward Air', '/images/ike.png', '/images/ike.gif');
+
+INSERT INTO "character" ("gameId", "name", "strategy", "combos", "image", "thumbnail")
+VALUES  (1, 'Kirby', '', 'Up Tilt -> Up Tilt -> Up Tilt/ Forward Throw -> Up Special', '/images/kirby.jpeg', '/images/kirby.gif');
+
+
 
 -- This table is for games
 CREATE TABLE "game" (
@@ -46,10 +57,20 @@ CREATE TABLE "moves" (
 
 INSERT INTO "moves" ("input", "frames", "characterId")
 VALUES 
+
 ('Neutral B grounded', '53-62', 1),
 ('Jab 1 (A)', '3', 1),
 ('Jab 2 (A, A)', '5', 1),
 ('Jab 3 (A, A, A)', '6', 1);
+('Forward Smash', '19', 1);
+('Down Smash', '19', 1);
+('Up Smash', '22', 1);
+
+
+
+
+
+
 
 -- Favorite Table
 
