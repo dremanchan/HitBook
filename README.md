@@ -21,7 +21,11 @@ I love video games of the fighting genre. (Smash Bros, Street Fighter, Tekken, e
 
 ## Screenshots
 
-<img src="https://i.postimg.cc/6QyW8d9y/login.png" />## Built With
+<img src="https://i.postimg.cc/6QyW8d9y/login.png" />
+<img src="https://i.postimg.cc/3wBXwQxK/Screen-Shot-2022-03-24-at-3-43-04-PM.png" />
+<img src="https://i.postimg.cc/XNhwq84y/Screen-Shot-2022-03-24-at-3-42-09-PM.png" />
+
+## Built With
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/CSS"><img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/css3/css3-original.svg" height="40px" width="40px" /></a><a href="https://developer.mozilla.org/en-US/docs/Web/HTML"><img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/html5/html5-original.svg" height="40px" width="40px" /></a><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript"><img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/javascript/javascript-original.svg" height="40px" width="40px" /></a><a href="https://nodejs.org/en/"><img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/nodejs/nodejs-original.svg" height="40px" width="40px" /></a><a href="https://www.postgresql.org/"><img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/postgresql/postgresql-original.svg" height="40px" width="40px" /></a><a href="https://reactjs.org/"><img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/react/react-original-wordmark.svg" height="40px" width="40px" /></a><a href="https://redux.js.org/"><img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/redux/redux-original.svg" height="40px" width="40px" /></a>
 
